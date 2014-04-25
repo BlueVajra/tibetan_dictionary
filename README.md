@@ -16,6 +16,7 @@ Often, these amazing insights are now lost in a pile of notebooks, handwritten a
 - academics and translators can store text references and share them with colleagues
 - translators can "up-vote" other translators' comments and entries.
 - any student of Tibetan language to store and share their ideas and the wisdom of others.
+- publishers and authors can add book glossaries
 
 ##Dreams and Goals - current todo list
 

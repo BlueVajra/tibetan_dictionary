@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
+  get 'words/index', to: 'words#index'
+
+  get 'words/new'
+
+  get 'words/show'
+
+  get 'words/edit'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
