@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  get '/about', to: 'welcome#about'
+  get '/contact', to: 'welcome#contact'
 
   get 'words/index', to: 'words#index'
 
