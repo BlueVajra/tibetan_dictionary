@@ -1,22 +1,25 @@
 <h2>Wylie: <%= @term.wyl %> | བོད་སྐད་: <%= @term.tib %></h2>
 
-<h3>Definitions</h3>
-<dl>
-<% @term.definitions.each do |definition|  %>
-<dt><%= definition.name %></dt>
-<dd><%= definition.entry %></dd>
-<% end  %>
-</dl>
+<div class="definitions">
+  <h3>Definitions</h3>
+  <dl>
+    <% @term.definitions.each do |definition| %>
+      <dt><%= definition.name %></dt>
+      <dd><%= simple_format(definition.entry) %></dd>
+    <% end %>
+  </dl>
+</div>
 
-<hr />
-<h3>Add a Definition or Comment</h3>
+<div class="new_definition">
+  <h4>Add a Definition or Comment</h4>
 
-<%= form_for @term,  method: "post" do |t| %>
-  <%= t.fields_for :definitions do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :entry %>
-    <%= f.text_area :entry %>
-    <%= f.submit "Submit" %>
+  <%= form_for @term, method: "post" do |t| %>
+    <%= t.fields_for :definitions do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :entry %>
+      <%= f.text_area :entry %>
+      <%= f.submit "Submit" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>

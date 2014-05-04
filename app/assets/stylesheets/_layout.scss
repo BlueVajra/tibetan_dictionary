@@ -76,6 +76,19 @@ section.main{
   padding:0 .5em;
 }
 
+
+
+
+#header_container, section.main > *, #footer_container, nav ul{
+  @include outer-container;
+}
+
+section.main .content_container{
+  padding-top:1em;
+  padding-bottom:5em;
+}
+
+
 footer {
   padding:2em .5em;
   background-color: #3d4a57;
@@ -85,24 +98,6 @@ footer {
   bottom:0;
   width:100%;
 }
-
-
-#header_container, section.main > *, #footer_container, nav ul{
-  position:relative;
-  max-width: 70em;
-  margin:0 auto;
-}
-
-section.main .content_container{
-  padding-top:1em;
-}
-
-#main_container{
-  padding-bottom:5em;
-  padding-top:1em;
-}
-
-
 #footer_container{
   text-align:center;
   font-size:.7em;
@@ -116,4 +111,25 @@ section.main .content_container{
 
 .controls a {
   @include button;
+}
+
+.definitions{
+  @include media ($large-screen) {
+    @include span-columns(6);
+  }
+
+  dd{
+    border:1px solid lightgrey;
+    border-radius:5px;
+    padding:.5em 1em 0 .5em;
+  }
+}
+.new_definition{
+  @include media ($large-screen) {
+    @include span-columns(6);
+  }
+  border:1px solid #E6AF63;
+  padding:1em;
+  border-radius:5px;
+  background-color:rgba(230,174,101,.2)
 }
