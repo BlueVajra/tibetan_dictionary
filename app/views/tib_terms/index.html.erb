@@ -1,9 +1,9 @@
-<h2>List of Tibetan Terms</h2>
-<%= link_to "Add New Term", new_tib_term_path %>
+<h2>Tibetan Dictionary</h2>
+<div class="controls"><%= link_to "Add New Term", new_tib_term_path %></div>
 
-<h3>Tibetan Terms</h3>
+<h3>Terminology</h3>
 <ul>
-<% @terms.each do |term| %>
-<li><%= term.wyl %> - <%= term.tib %></li>
-<% end %>
+  <% @terms.each do |term| %>
+    <li><%= link_to term.wyl, tib_term_path(term.id) %> - <%= term.tib %></li>
+  <% end %>
 </ul>

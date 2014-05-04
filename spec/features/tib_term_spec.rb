@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Manage Terms" do
-  scenario "User can add Terms" do
+  before do
 
     visit '/'
     click_link 'Dictionary'
@@ -10,5 +10,15 @@ feature "Manage Terms" do
     fill_in 'tib_term[tib]', with: 'བོད་'
     click_button 'Submit'
     expect(page).to have_content 'bod'
+  end
+  scenario "user can add definitions to terms" do
+    click_link 'bod'
+
+    fill_in 'tib_term[definitions][entry]', with: 'Tibet'
+    fill_in 'tib_term[definitions][name]', with: 'Cory'
+    click_button 'Submit'
+    expect(page).to have_content 'Tibet'
+    expect(page).to have_content 'Cory'
+
   end
 end

@@ -1,0 +1,22 @@
+<h2>Wylie: <%= @term.wyl %> | བོད་སྐད་: <%= @term.tib %></h2>
+
+<h3>Definitions</h3>
+<dl>
+<% @term.definitions.each do |definition|  %>
+<dt><%= definition.name %></dt>
+<dd><%= definition.entry %></dd>
+<% end  %>
+</dl>
+
+<hr />
+<h3>Add a Definition or Comment</h3>
+
+<%= form_for @term,  method: "post" do |t| %>
+  <%= t.fields_for :definitions do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :entry %>
+    <%= f.text_area :entry %>
+    <%= f.submit "Submit" %>
+  <% end %>
+<% end %>

@@ -3,7 +3,15 @@ Rails.application.routes.draw do
   get '/about', to: 'welcome#about'
   get '/contact', to: 'welcome#contact'
 
+  get '/tib_terms/', to: 'tib_terms#index'
+  get '/tib_terms/new', to: 'tib_terms#new'
+  post '/tib_terms', to: 'tib_terms#create'
+  get '/tib_terms/:id', to: 'tib_terms#show'
+
+  post '/tib_terms/:id', to: 'tib_terms#create_definition'
+
   resources :tib_terms
+
 
 
 

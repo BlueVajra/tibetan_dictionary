@@ -93,6 +93,10 @@ footer {
   margin:0 auto;
 }
 
+section.main .content_container{
+  padding-top:1em;
+}
+
 #main_container{
   padding-bottom:5em;
   padding-top:1em;
@@ -104,4 +108,12 @@ footer {
   font-size:.7em;
   text-transform:uppercase;
 
+}
+
+.controls{
+  float:right;
+}
+
+.controls a {
+  @include button;
 }
