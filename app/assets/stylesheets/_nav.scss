@@ -1,0 +1,12 @@
+.authorization{
+  position:absolute;
+  top:0;
+  right:0;
+}
+.authorization a{
+  @include button(#CF6132);
+}
+.authorization a.signup{
+  @include button(#910A0A);
+  margin-left:1em;
+}

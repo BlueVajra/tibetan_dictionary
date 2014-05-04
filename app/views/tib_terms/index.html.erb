@@ -1,0 +1,9 @@
+<h2>List of Tibetan Terms</h2>
+<%= link_to "Add New Term", new_tib_term_path %>
+
+<h3>Tibetan Terms</h3>
+<ul>
+<% @terms.each do |term| %>
+<li><%= term.wyl %> - <%= term.tib %></li>
+<% end %>
+</ul>

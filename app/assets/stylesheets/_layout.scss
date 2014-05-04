@@ -31,7 +31,7 @@ body{
 header {
   padding: 1em .5em;
   margin: 0;
-  background-color:#EBC51C;
+  @include linear-gradient(#E6AF63, darken(#E6AF63, 10%));
 }
 
 nav {
@@ -63,14 +63,15 @@ nav ul li a{
 
 nav ul li a:hover{
   background-color: rgba(255,255,255,.25);
+  color: #c5c9cd;
 }
 
-nav ul li.active a, nav ul li.active a:hover{
+nav ul li a.selected, nav ul li a.selected:hover{
   background-color: rgba(255,255,255,.4);
   color:#3d4a57;
 }
 
-section#main{
+section.main{
   height:auto;
   padding:0 .5em;
 }
@@ -86,17 +87,17 @@ footer {
 }
 
 
-#header_container, section#main > *, #footer_container, nav ul{
+#header_container, section.main > *, #footer_container, nav ul{
+  position:relative;
   max-width: 70em;
   margin:0 auto;
 }
 
 #main_container{
   padding-bottom:5em;
+  padding-top:1em;
 }
-#margin_container{
-  margin:0 1em 0 1em;
-}
+
 
 #footer_container{
   text-align:center;

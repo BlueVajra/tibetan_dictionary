@@ -1,0 +1,11 @@
+<h2>Add a New Term</h2>
+<p>Please enter the new term below.</p>
+
+<%= form_for @tib_term do |f| %>
+<%= f.label :wyl %>
+  <%= f.text_field :wyl %>
+  <%= f.label :tib %>
+  <%= f.text_field :tib %>
+  <%= f.submit 'Submit' %>
+
+<% end  %>

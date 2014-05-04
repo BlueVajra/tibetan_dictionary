@@ -25,3 +25,9 @@ Often, these amazing insights are now lost in a pile of notebooks, handwritten a
 1. share dictionaries with others
 1. comment on entries / group discussion
 
+## Links
+https://www.pivotaltracker.com/n/projects/1071684
+http://tibetan-dictionary-test.herokuapp.com/
+http://tibetan-dictionary.herokuapp.com/
+
+
