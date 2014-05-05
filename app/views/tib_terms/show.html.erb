@@ -13,6 +13,17 @@
 <div class="new_definition">
   <h4>Add a Definition or Comment</h4>
 
+  <% if @definition.errors.any? %>
+    <div class="errors">
+      <ul>
+        <% @definition.errors.full_messages.each do |msg| %>
+          <li class="error"><span><%= msg %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
   <%= form_for @term, method: "post" do |t| %>
     <%= t.fields_for :definitions do |f| %>
       <%= f.label :name %>

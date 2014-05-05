@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/tib_terms/:id', to: 'tib_terms#show'
 
   post '/tib_terms/:id', to: 'tib_terms#create_definition'
+  #post '/tib_terms/:id/definitions', to: 'definitions#create'
 
   resources :tib_terms
 
