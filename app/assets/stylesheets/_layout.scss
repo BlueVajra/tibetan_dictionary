@@ -15,6 +15,7 @@ html {
   margin:0;
   padding:0;
   height:100%;
+
 }
 body{
   margin:0;
@@ -114,9 +115,11 @@ footer {
 }
 
 .definitions{
+
   @include media ($large-screen) {
     @include span-columns(6);
   }
+
 
   dd{
     border:1px solid lightgrey;
@@ -132,4 +135,8 @@ footer {
   padding:1em;
   border-radius:5px;
   background-color:rgba(230,174,101,.2)
+}
+
+.errors{
+  @extend %flash-error;
 }

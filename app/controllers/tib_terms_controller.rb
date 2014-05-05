@@ -4,19 +4,23 @@ class TibTermsController < ApplicationController
   end
 
   def new
-    @tib_term = TibTerm.new
+    @term = TibTerm.new
   end
 
   def create
     @term = TibTerm.new
-    @term.wyl = params[:tib_term][:wyl]
+    @term.wyl = params[:tib_term][:wyl].strip
     @term.tib = params[:tib_term][:tib]
-    @term.save
-    redirect_to tib_terms_path
+    if @term.save
+      redirect_to tib_terms_path
+    else
+      render :new
+    end
   end
 
   def show
     @term = TibTerm.find(params[:id])
+    @definition = Definition.new
   end
 
   def create_definition
@@ -27,4 +31,5 @@ class TibTermsController < ApplicationController
     )
     redirect_to tib_term_path(params[:id])
   end
+
 end

@@ -30,4 +30,5 @@ https://www.pivotaltracker.com/n/projects/1071684
 http://tibetan-dictionary-test.herokuapp.com/
 http://tibetan-dictionary.herokuapp.com/
 
+https://travis-ci.org/BlueVajra/tibetan_dictionary
 

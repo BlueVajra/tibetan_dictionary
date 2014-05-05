@@ -1,11 +1,23 @@
 <h2>Add a New Term</h2>
 <p>Please enter the new term below.</p>
 
-<%= form_for @tib_term do |f| %>
-<%= f.label :wyl %>
+
+
+<% if @term.errors.any? %>
+  <div class="errors">
+    <ul>
+      <% @term.errors.full_messages.each do |msg| %>
+        <li class="error"><span><%= msg %></span></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @term do |f| %>
+  <%= f.label :wyl %>
   <%= f.text_field :wyl %>
   <%= f.label :tib %>
   <%= f.text_field :tib %>
   <%= f.submit 'Submit' %>
 
-<% end  %>
+<% end %>
