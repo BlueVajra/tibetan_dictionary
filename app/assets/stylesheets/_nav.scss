@@ -1,12 +1,94 @@
-.authorization{
-  position:absolute;
-  top:0;
-  right:0;
+nav {
+  background-color: #3d4a57;
+  overflow: hidden;
+  ul {
+    float: left;
+  }
 }
-.authorization a{
+
+nav ul li {
+  float: left;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li + li {
+  margin-left: 2px;
+}
+
+nav ul li a {
+  display: block;
+  padding: .5em .7em;
+  background-color: rgba(255, 255, 255, .1);
+  color: #c5c9cd;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, .25);
+  color: #c5c9cd;
+}
+
+nav ul li a.selected, nav ul li a.selected:hover {
+  background-color: rgba(255, 255, 255, .4);
+  color: #3d4a57;
+}
+
+nav.authentication {
+  .logo {
+    h1 {
+      float: left;
+      font-size: 1.5em;
+      text-shadow: 1px 1px 0px rgba(255,255,255, 0.5);
+    }
+  }
+  background-color: rgba(0, 0, 0, .1);
+  ul {
+    float: right;
+    padding: .2em;
+  }
+  ul li + li {
+    margin-right: 2px;
+  }
+  ul li {
+
+    &.message {
+      padding: .1em .3em;
+    }
+
+    a {
+      background-color: rgba(0, 0, 0, .3);
+      color: #c5c9cd;
+      padding: .1em .4em;
+      border-radius: 3px;
+    }
+
+    a:hover {
+      background-color: rgba(0, 0, 0, .4);
+      color: #c5c9cd;
+    }
+
+    a.selected, a.selected:hover {
+      background-color: rgba(255, 255, 255, .4);
+      color: #3d4a57;
+    }
+  }
+}
+
+//LATER DESIGNS
+
+.authorization {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.authorization a {
   @include button(#CF6132);
 }
-.authorization a.signup{
+
+.authorization a.signup {
   @include button(#910A0A);
-  margin-left:1em;
+  margin-left: 1em;
 }

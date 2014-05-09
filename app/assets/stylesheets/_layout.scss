@@ -30,46 +30,9 @@ body{
 }
 
 header {
-  padding: 1em .5em;
+
   margin: 0;
   @include linear-gradient(#E6AF63, darken(#E6AF63, 10%));
-}
-
-nav {
-  background-color: #3d4a57;
-  overflow: hidden
-
-}
-nav ul{
-
-  padding:0;
-  margin:0;
-}
-nav ul li{
-  float:left;
-  list-style:none;
-  padding:0;
-  margin:0;
-}
-nav ul li+li{
-  margin-left:2px;
-}
-nav ul li a{
-  display:block;
-  padding: .5em .7em;
-  background-color: rgba(255,255,255,.1);
-  color: #c5c9cd;
-  text-decoration:none;
-}
-
-nav ul li a:hover{
-  background-color: rgba(255,255,255,.25);
-  color: #c5c9cd;
-}
-
-nav ul li a.selected, nav ul li a.selected:hover{
-  background-color: rgba(255,255,255,.4);
-  color:#3d4a57;
 }
 
 section.main{
@@ -78,15 +41,17 @@ section.main{
 }
 
 
-
-
-#header_container, section.main > *, #footer_container, nav ul{
+#header_container, section.main > *, #footer_container, nav > *{
   @include outer-container;
+}
+
+#header_container{
+  padding: 1em .5em;
 }
 
 section.main .content_container{
   padding-top:1em;
-  padding-bottom:5em;
+  padding-bottom:6em;
 }
 
 
@@ -141,6 +106,9 @@ footer {
 
 .errors{
   @extend %flash-error;
+}
+.success{
+  @extend %flash-success;
 }
 
 .field_with_errors textarea,

@@ -9,22 +9,16 @@
 <body>
 <div id="body_container">
   <header>
+    <%= render 'layouts/user_navigation' %>
     <div id="header_container">
       <h1>Tibetan Translator Community</h1>
-
       <h2>A Crowd-sourced Tibetan Dictionary</h2>
     </div>
   </header>
-  <nav class="main">
-    <ul>
-      <li><%= nav_link_to "Home", '/' %></li>
-      <li><%= nav_link_to "About", '/about' %></li>
-      <li><%= nav_link_to "Contact", '/contact' %></li>
-      <li><%= nav_link_to "Dictionary", '/tib_terms/', {}, {:url_segment => 1} %></li>
-    </ul>
-  </nav>
+  <%= render 'layouts/navigation' %>
   <section class="main">
     <div class="content_container">
+      <%= render 'layouts/messages' %>
     <%= yield %>
     </div>
   </section>

@@ -1,0 +1,18 @@
+<nav class="authentication">
+
+  <div class="user_info">
+    <div class="logo">
+      <h1>TIBDICT</h1>
+    </div>
+    <ul>
+      <% if user_signed_in? %>
+        <li class="message">Welcome <%= current_user.email %></li>
+        <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %></li>
+      <% else %>
+        <li><%= link_to 'Sign in', new_user_session_path %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
