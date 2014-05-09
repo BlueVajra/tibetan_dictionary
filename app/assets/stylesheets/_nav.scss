@@ -37,10 +37,30 @@ nav ul li a.selected, nav ul li a.selected:hover {
 
 nav.authentication {
   .logo {
+    margin-left:.5em;
     h1 {
       float: left;
       font-size: 1.5em;
       text-shadow: 1px 1px 0px rgba(255,255,255, 0.5);
+      span{
+        margin-right:.2em;
+        margin-top:.05em;
+        display:block;
+        float:left;
+        background-color:rgba(0, 0, 0, .8);;
+        border-radius: 50%;
+        width: 1.3em;
+        height: 1.3em;
+        color:#ffffff;
+
+        i{
+          display:block;
+          padding:0 0 0 .35em;
+          margin-top:-.1em;
+          font-size:.8em;
+          font-style:normal;
+        }
+      }
     }
   }
   background-color: rgba(0, 0, 0, .1);

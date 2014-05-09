@@ -82,7 +82,7 @@ footer {
 .definitions{
 
   @include media ($large-screen) {
-    @include span-columns(7);
+    @include span-columns(8);
   }
 
   dd{
@@ -93,7 +93,7 @@ footer {
 }
 .add_definition{
   @include media ($large-screen) {
-    @include span-columns(5);
+    @include span-columns(4);
   }
   border:1px solid steelblue;
   padding:1em;
