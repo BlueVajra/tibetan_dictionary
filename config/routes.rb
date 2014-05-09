@@ -3,18 +3,9 @@ Rails.application.routes.draw do
   get '/about', to: 'welcome#about'
   get '/contact', to: 'welcome#contact'
 
-  get '/tib_terms/', to: 'tib_terms#index'
-  get '/tib_terms/new', to: 'tib_terms#new'
-  post '/tib_terms', to: 'tib_terms#create'
-  get '/tib_terms/:id', to: 'tib_terms#show'
-
-  post '/tib_terms/:id', to: 'tib_terms#create_definition'
-  #post '/tib_terms/:id/definitions', to: 'definitions#create'
-
-  resources :tib_terms
-
-
-
+  resources :tib_terms do
+    resources :definitions
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -14,8 +14,8 @@ feature "Manage Terms" do
   scenario "user can add definitions to terms" do
     click_link 'bod'
 
-    fill_in 'tib_term[definitions][entry]', with: 'Tibet'
-    fill_in 'tib_term[definitions][name]', with: 'Cory'
+    fill_in 'definition[entry]', with: 'Tibet'
+    fill_in 'definition[name]', with: 'Cory'
     click_button 'Submit'
     expect(page).to have_content 'Tibet'
     expect(page).to have_content 'Cory'

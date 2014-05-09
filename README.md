@@ -1,7 +1,7 @@
 Tibetan Dictionary
 ==================
 
-Please leave a comment if you want to be notified when the Beta is released!
+[![Build Status](https://travis-ci.org/BlueVajra/tibetan_dictionary.svg?branch=master)](https://travis-ci.org/BlueVajra/tibetan_dictionary)
 
 ##Crowdsourced Tibetan Dictionary
 

@@ -3,4 +3,6 @@ class TibTerm < ActiveRecord::Base
 
   validates :wyl, presence: {message: "cannot be blank."}
   validates :wyl, uniqueness: {message: "This term already exists, please check the spelling"}
+
+
 end

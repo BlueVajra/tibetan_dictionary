@@ -1,7 +1,6 @@
-<h2>Wylie: <%= @term.wyl %> | བོད་སྐད་: <%= @term.tib %></h2>
+<h2><%= @term.wyl %> | <%= @term.tib %></h2>
 
 <div class="definitions">
-  <h3>Definitions</h3>
   <dl>
     <% @term.definitions.each do |definition| %>
       <dt><%= definition.name %></dt>
@@ -10,7 +9,7 @@
   </dl>
 </div>
 
-<div class="new_definition">
+<div class="add_definition">
   <h4>Add a Definition or Comment</h4>
 
   <% if @definition.errors.any? %>
@@ -24,13 +23,11 @@
   <% end %>
 
 
-  <%= form_for @term, method: "post" do |t| %>
-    <%= t.fields_for :definitions do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :entry %>
-      <%= f.text_area :entry %>
-      <%= f.submit "Submit" %>
-    <% end %>
+  <%= form_for [@term, @definition], url: tib_term_definitions_path(@term), method: "post" do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :entry %>
+    <%= f.text_area :entry %>
+    <%= f.submit "Submit" %>
   <% end %>
 </div>
