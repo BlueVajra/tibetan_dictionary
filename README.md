@@ -26,9 +26,10 @@ Often, these amazing insights are now lost in a pile of notebooks, handwritten a
 1. comment on entries / group discussion
 
 ## Links
-https://www.pivotaltracker.com/n/projects/1071684
-http://tibetan-dictionary-test.herokuapp.com/
-http://tibetan-dictionary.herokuapp.com/
 
-https://travis-ci.org/BlueVajra/tibetan_dictionary
+- https://www.pivotaltracker.com/n/projects/1071684
+- http://tibetan-dictionary-test.herokuapp.com/
+- http://tibetan-dictionary.herokuapp.com/
+
+- https://travis-ci.org/BlueVajra/tibetan_dictionary
 
