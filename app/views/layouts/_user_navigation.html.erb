@@ -6,12 +6,11 @@
     </div>
     <ul>
       <% if user_signed_in? %>
-        <li class="message">Welcome <%= current_user.email %></li>
-        <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-        <li><%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %></li>
+        <li><%= link_to current_user.email, edit_user_registration_path, class: "user" %></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, :method => 'delete', class: "sign" %></li>
       <% else %>
-        <li><%= link_to 'Sign in', new_user_session_path %></li>
-        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <li><%= link_to 'Sign in', new_user_session_path, class: "sign" %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, class: "sign" %></li>
       <% end %>
     </ul>
   </div>

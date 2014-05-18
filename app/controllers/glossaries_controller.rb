@@ -1,6 +1,8 @@
 class GlossariesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @glossaries = Glossary.all
+    @glossaries = current_user.glossaries
   end
 
   def new
@@ -9,6 +11,7 @@ class GlossariesController < ApplicationController
 
   def create
     @glossary = Glossary.new
+    @glossary.user_id = current_user.id
     @glossary.name = params[:glossary][:name]
     @glossary.description = params[:glossary][:description]
 

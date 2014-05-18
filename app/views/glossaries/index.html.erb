@@ -2,8 +2,9 @@
 
 <%= link_to "Add New Glossary", new_glossary_path, class: 'button' %>
 
-<ul>
+<dl>
   <% @glossaries.each do |glossary| %>
-    <li><%= glossary.name %></li>
+    <dt><%= glossary.name %></dt>
+    <dd><%= glossary.description %></dd>
   <% end %>
-</ul>
+</dl>
