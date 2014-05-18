@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
+
   root 'welcome#index'
   get '/about', to: 'welcome#about'
   get '/contact', to: 'welcome#contact'
   get '/my_home', to: 'welcome#user'
+
 
   resources :tib_terms do
     resources :definitions
   end
 
   resources :glossaries
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

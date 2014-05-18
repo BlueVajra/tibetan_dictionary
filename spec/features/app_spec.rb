@@ -32,5 +32,9 @@ feature "Manage Authentication" do
     visit glossaries_path
     expect(page).to have_content "You need to sign in or sign up before continuing."
   end
+  scenario "a new user has a public glossary created" do
+    click_on "My Glossaries"
+    expect(page).to have_content "bob@bob.com's Public Glossary"
+  end
 
 end
