@@ -104,6 +104,17 @@ footer {
   }
 }
 
+.authentication_form{
+  border:1px solid steelblue;
+  padding:1em;
+  border-radius:5px;
+  background-color:lightsteelblue;
+  @include media ($large-screen) {
+    @include span-columns(6);
+    @include shift(3)
+  }
+}
+
 .errors{
   @extend %flash-error;
 }

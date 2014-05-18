@@ -6,7 +6,7 @@
       <li><%= nav_link_to "Contact", '/contact' %></li>
       <li><%= nav_link_to "Dictionary", '/tib_terms/', {}, {:url_segment => 1} %></li>
       <% if user_signed_in? %>
-        <li><%= nav_link_to "My glossaries", my_home_path %></li>
+        <li><%= nav_link_to "My Glossaries", glossaries_path %></li>
       <% end %>
     </ul>
   </div>

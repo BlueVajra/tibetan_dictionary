@@ -1,0 +1,9 @@
+<h2>My Glossaries</h2>
+
+<%= link_to "Add New Glossary", new_glossary_path, class: 'button' %>
+
+<ul>
+  <% @glossaries.each do |glossary| %>
+    <li><%= glossary.name %></li>
+  <% end %>
+</ul>
