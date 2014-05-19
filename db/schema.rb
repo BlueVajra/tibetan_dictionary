@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518005853) do
+ActiveRecord::Schema.define(version: 20140519042033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "definitions", force: true do |t|
     t.string   "entry",       null: false
-    t.string   "name",        null: false
     t.integer  "tib_term_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "glossary_id"
   end
+
+  add_index "definitions", ["id"], name: "index_definitions_on_id", using: :btree
 
   create_table "glossaries", force: true do |t|
     t.string   "name",        null: false
@@ -32,10 +34,14 @@ ActiveRecord::Schema.define(version: 20140518005853) do
     t.datetime "updated_at"
   end
 
+  add_index "glossaries", ["id"], name: "index_glossaries_on_id", using: :btree
+
   create_table "tib_terms", force: true do |t|
     t.string "tib"
     t.string "wyl", null: false
   end
+
+  add_index "tib_terms", ["wyl"], name: "index_tib_terms_on_wyl", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

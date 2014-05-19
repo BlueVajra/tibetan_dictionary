@@ -3,31 +3,36 @@
 <div class="definitions">
   <dl>
     <% @term.definitions.each do |definition| %>
-      <dt><%= definition.name %></dt>
+      <dt><%= definition.glossary.description %></dt>
       <dd><%= simple_format(definition.entry) %></dd>
     <% end %>
   </dl>
 </div>
 
+
 <div class="add_definition">
   <h4>Add a Definition or Comment</h4>
+  <% if user_signed_in? %>
 
-  <% if @definition.errors.any? %>
-    <div class="errors">
-      <ul>
-        <% @definition.errors.full_messages.each do |msg| %>
-          <li class="error"><span><%= msg %></span></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if @definition.errors.any? %>
+      <div class="errors">
+        <ul>
+          <% @definition.errors.full_messages.each do |msg| %>
+            <li class="error"><span><%= msg %></span></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
 
-  <%= form_for [@term, @definition], url: tib_term_definitions_path(@term), method: "post" do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :entry %>
-    <%= f.text_area :entry %>
-    <%= f.submit "Submit" %>
+    <%= form_for [@term, @definition], url: tib_term_definitions_path(@term), method: "post" do |f| %>
+      <%= f.label :entry %>
+      <%= f.text_area :entry %>
+      <%= f.submit "Submit" %>
+    <% end %>
+
+  <% else %>
+    <p>Please register or login to add a definition.</p>
+
   <% end %>
 </div>

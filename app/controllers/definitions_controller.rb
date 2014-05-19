@@ -1,4 +1,5 @@
 class DefinitionsController < ApplicationController
+  before_action :authenticate_user!, :only => [:create]
   #def index
   #
   #end
@@ -15,7 +16,7 @@ class DefinitionsController < ApplicationController
     @definition = Definition.new
     @definition.tib_term_id = @term.id
     @definition.entry = params[:definition][:entry]
-    @definition.name = params[:definition][:name]
+    @definition.glossary_id = current_user.glossaries.first.id
 
     if @definition.save
 
