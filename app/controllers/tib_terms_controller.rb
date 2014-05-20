@@ -1,6 +1,10 @@
 class TibTermsController < ApplicationController
   def index
-    @terms = TibTerm.all
+    if params[:search]
+      @terms = TibTerm.search(params[:search])
+    else
+      @terms = TibTerm.all
+    end
   end
 
   def new

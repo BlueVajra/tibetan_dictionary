@@ -9,5 +9,21 @@
         <li><%= nav_link_to "My Glossaries", glossaries_path %></li>
       <% end %>
     </ul>
+
+    <!--<div class="search">-->
+    <!--<%= form_tag tib_terms_path, method: 'get' do %>-->
+      <!--<%= search_field_tag :search %>-->
+      <!--<%= submit_tag 'Search' %>-->
+      <!--
+  <% end %>-->
+    <!--</div>-->
+    <div class="search-bar">
+      <div class="search-and-submit">
+        <input type="search" placeholder="Enter Search"/>
+        <button type="submit">
+          <img src="https://raw.githubusercontent.com/Magnus-G/Random/master/search-icon-black.png" alt="">
+        </button>
+      </div>
+    </div>
   </div>
 </nav>

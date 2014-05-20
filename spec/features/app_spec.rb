@@ -3,12 +3,7 @@ require 'spec_helper'
 feature "Manage Authentication" do
   context "User is signed in" do
     before :each do
-      visit '/'
-      click_link 'Sign up'
-      fill_in 'user[email]', with: "bob@bob.com"
-      fill_in 'user[password]', with: "12341234"
-      fill_in 'user[password_confirmation]', with: "12341234"
-      click_button 'Sign up'
+      sign_up_user
     end
     scenario "a guest can't see glossaries created by other people" do
       click_on "My Glossaries"
@@ -20,7 +15,7 @@ feature "Manage Authentication" do
       click_link "Sign out"
 
       click_link 'Sign up'
-      fill_in 'user[email]', with: "bob@gmail.com"
+      fill_in 'user[email]', with: "john@gmail.com"
       fill_in 'user[password]', with: "12341234"
       fill_in 'user[password_confirmation]', with: "12341234"
       click_button 'Sign up'
@@ -63,5 +58,16 @@ feature "Manage Authentication" do
       visit tib_term_path(@term)
       expect(page).to have_content "Please register or login to add a definition"
     end
+  end
+
+  scenario "user searches a term" do
+    create_terms
+    visit '/'
+    click_on 'Dictionary'
+    fill_in 'search', with: "ka"
+    click_on 'Search'
+    expect(page).to have_content "ka pa la"
+    expect(page).to have_content "ka dag klong yangs"
+    expect(page).to_not have_content "bsgrubs"
   end
 end

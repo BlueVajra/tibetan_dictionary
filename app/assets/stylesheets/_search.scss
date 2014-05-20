@@ -1,0 +1,49 @@
+.search-bar {
+
+  $search-bar-border-color: $dark-gray;
+  $search-bar-border: 1px solid rgba(0,0,0, .3);
+  $search-bar-background: rgba(255, 255, 255, .1);
+//  #c5c9cd;
+
+
+  position: relative;
+  display: block;
+  float:right;
+  margin-top:.25em;
+
+  input {
+    @include box-sizing(border-box);
+    display: block;
+  }
+
+  div.search-and-submit {
+    position: relative;
+    width:20em;
+
+    input[type=search] {
+      @include appearance(none);
+      width: 100%;
+      padding: .5em .8em;
+      font-size: .9em;
+      font-style: italic;
+      border-radius: $base-border-radius * 2;
+      background: $search-bar-background;
+      margin: 0;
+      border:$search-bar-border;
+      color:#c5c9cd;
+    }
+
+    button[type=submit] {
+      @include button(simple, lighten($search-bar-background, 10));
+      @include position(absolute, 0.3em 0.3em 0.3em 0);
+      outline: none;
+      border:1px solid rgba(0,0,0, .1);
+      padding: .2em .4em;
+
+      img {
+        height: 14px;
+        opacity: .7;
+      }
+    }
+  }
+}

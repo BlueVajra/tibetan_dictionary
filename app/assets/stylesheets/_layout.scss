@@ -87,8 +87,13 @@ footer {
 
   dd{
     border:1px solid lightgrey;
-    border-radius:5px;
-    padding:.5em 1em 0 .5em;
+    border-radius:2px;
+    padding:.2em;
+
+    p{
+      padding:0;
+      margin:0;
+    }
   }
 }
 .add_definition{
