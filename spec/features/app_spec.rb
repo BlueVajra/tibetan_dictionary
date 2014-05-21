@@ -27,28 +27,7 @@ feature "Manage Authentication" do
       visit glossaries_path
       expect(page).to have_content "You need to sign in or sign up before continuing."
     end
-    scenario "a new user has a public glossary created" do
-      click_on "My Glossaries"
-      expect(page).to have_content "bob@bob.com's Public Glossary"
-    end
-    context "user creates a new definition" do
-      before :each do
-        @term = TibTerm.create!(wyl: "My term")
-      end
-      scenario "a user's definition gets added to auto generated glossary" do
 
-        visit tib_term_path(@term)
-
-        fill_in 'definition[entry]', with: "Some entry"
-
-        click_button "Submit"
-
-        expect(page).to have_content("bob@bob.com's Public Glossary")
-        expect(page).to have_content("Some entry")
-      end
-      scenario "a user create"
-
-    end
   end
   context "User is not signed in" do
     before :each do

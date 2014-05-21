@@ -25,6 +25,7 @@ gem 'rails_12factor', '~> 0.0.2'
 gem 'nav_lynx', '~> 1.1.0'
 
 gem 'devise', '~> 3.2.4'
+gem 'will_paginate', '~> 3.0'
 
 
 

@@ -9,6 +9,8 @@
 <div class="controls"><%= link_to "Add New Term", new_tib_term_path %></div>
 
 <h3>Terminology</h3>
+<%= will_paginate @terms %>
+
 <ul>
   <% @terms.each do |term| %>
     <li><%= link_to term.wyl, tib_term_path(term.id) %> - <%= term.tib %></li>

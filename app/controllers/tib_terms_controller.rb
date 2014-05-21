@@ -1,9 +1,9 @@
 class TibTermsController < ApplicationController
   def index
     if params[:search]
-      @terms = TibTerm.search(params[:search])
+      @terms = TibTerm.search(params[:search]).paginate(:page => params[:page], :per_page => 30)
     else
-      @terms = TibTerm.all
+      @terms = TibTerm.paginate(:page => params[:page], :per_page => 30)
     end
   end
 

@@ -5,6 +5,6 @@
 <dl>
   <% @glossaries.each do |glossary| %>
     <dt><%= glossary.name %></dt>
-    <dd><%= glossary.description %></dd>
+    <dd><%= link_to glossary.description, glossary_path(glossary) %></dd>
   <% end %>
 </dl>
