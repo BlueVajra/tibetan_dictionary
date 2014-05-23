@@ -31,8 +31,6 @@ feature "Managing glossaries" do
       expect(page).to have_content("bob@bob.com's Public Glossary")
       expect(page).to have_content("Some entry")
     end
-    scenario "a user create"
 
   end
-
 end

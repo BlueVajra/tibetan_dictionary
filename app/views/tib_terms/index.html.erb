@@ -1,11 +1,6 @@
 <h2>Tibetan Dictionary</h2>
 
-<div class="search">
-  <%= form_tag tib_terms_path, method: 'get' do %>
-    <%= search_field_tag :search %>
-    <%= submit_tag 'Search' %>
-  <% end %>
-</div>
+
 <div class="controls"><%= link_to "Add New Term", new_tib_term_path %></div>
 
 <h3>Terminology</h3>
