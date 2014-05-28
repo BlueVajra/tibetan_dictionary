@@ -4,7 +4,7 @@
   <dl>
     <% @term.definitions.each do |definition| %>
       <dt><%= definition.glossary.description %></dt>
-      <dd><%= simple_format(definition.entry) %></dd>
+      <dd><%= simple_format(add_links(definition.entry)) %></dd>
     <% end %>
   </dl>
 </div>

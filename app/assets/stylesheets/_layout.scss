@@ -85,10 +85,21 @@ footer {
     @include span-columns(8);
   }
 
+  dt{
+    display:block;
+    padding:0;
+    margin:0;
+    float:left;
+    width:1.5em;
+    margin-top:.3em;
+  }
   dd{
-    border:1px solid lightgrey;
+    border:1px solid rgba(0,0,0,.05);
     border-radius:2px;
-    padding:.2em;
+    padding:.2em .3em;
+    margin-left:2em;
+    margin-bottom:.4em;
+    box-shadow: 3px 3px 0px #dedede;
 
     p{
       padding:0;

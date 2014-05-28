@@ -1,0 +1,42 @@
+
+.terms {
+  @include media($large-screen) {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+  }
+}
+
+.pagination{
+  margin-top:1em;
+}
+
+.pagination {
+  overflow: hidden;
+
+  a, em, span {
+    display: block;
+    float: left;
+    padding: .2em .4em;
+    text-decoration: none;
+    color: black;
+    margin: 0;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+  }
+  .current {
+    background-color: #49AEC0;
+    color: #ffffff;
+  }
+  .disabled, .gap {
+    color: darkgray;
+  }
+  a:hover {
+    background-color: rgba(0, 0, 0, .2);
+  }
+  .next_page {
+    border-right: 1px solid black;
+  }
+
+}

@@ -20,4 +20,23 @@ module FeatureHelpers
     TibTerm.create!(wyl: "bsgrubs")
     TibTerm.create!(wyl: "mi")
   end
+
+  def create_definitions
+    user1 = User.create!(email:"a@a.com", password: "12341234")
+    gloss = Glossary.create!(name: "Test", user_id: user1.id)
+    term1 = TibTerm.create!(wyl: "Test1")
+    term2 = TibTerm.create!(wyl: "Test2")
+
+    Definition.create!(
+      entry: %q{ Test link {Test2} },
+      tib_term_id: term1.id,
+      glossary_id: gloss.id
+    )
+    Definition.create!(
+      entry: "Link to Here",
+      tib_term_id: term2.id,
+      glossary_id: gloss.id
+    )
+
+  end
 end

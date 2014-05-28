@@ -39,14 +39,4 @@ feature "Manage Authentication" do
     end
   end
 
-  scenario "user searches a term" do
-    create_terms
-    visit '/'
-    click_on 'Dictionary'
-    fill_in 'search', with: "ka"
-    click_button 'search_button'
-    expect(page).to have_content "ka pa la"
-    expect(page).to have_content "ka dag klong yangs"
-    expect(page).to_not have_content "bsgrubs"
-  end
 end
