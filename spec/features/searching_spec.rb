@@ -7,10 +7,10 @@ feature "Search terms and see definitions" do
 
     visit '/'
     click_on 'Dictionary'
-    fill_in 'search', with: "ka"
+    fill_in 'search', with: "ka pa la"
     click_button 'search_button'
     expect(page).to have_content "ka pa la"
-    expect(page).to have_content "ka dag klong yangs"
+    expect(page).to_not have_content "ka pa la la"
     expect(page).to_not have_content "bsgrubs"
   end
 
@@ -21,9 +21,8 @@ feature "Search terms and see definitions" do
     click_on 'Dictionary'
     click_on "Test1"
     expect(page).to have_content "Test link"
-    save_and_open_page
     click_on "Test2"
-    click_on "Test2"
+    #click_on "Test2"
     expect(page).to have_content "Link to Here"
   end
 end

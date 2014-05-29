@@ -9,7 +9,11 @@ module FeatureHelpers
   end
 
   def sign_in_user
-
+    visit '/'
+    click_link 'Sign in'
+    fill_in 'user[email]', with: "bob@bob.com"
+    fill_in 'user[password]', with: "12341234"
+    click_button 'Sign in'
   end
 
   def create_terms
@@ -22,8 +26,8 @@ module FeatureHelpers
   end
 
   def create_definitions
-    user1 = User.create!(email:"a@a.com", password: "12341234")
-    gloss = Glossary.create!(name: "Test", user_id: user1.id)
+    user1 = User.create!(email:"bob@bob.com", password: "12341234")
+    gloss = Glossary.create!(name: "Test", description: "Description Here", user_id: user1.id)
     term1 = TibTerm.create!(wyl: "Test1")
     term2 = TibTerm.create!(wyl: "Test2")
 

@@ -30,10 +30,8 @@ feature "Manage Authentication" do
 
   end
   context "User is not signed in" do
-    before :each do
-      @term = TibTerm.create!(wyl: "My term")
-    end
     scenario "guest can't add a definition" do
+      @term = TibTerm.create!(wyl: "My term")
       visit tib_term_path(@term)
       expect(page).to have_content "Please register or login to add a definition"
     end

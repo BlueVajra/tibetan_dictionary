@@ -4,7 +4,7 @@
 
 <dl>
   <% @glossaries.each do |glossary| %>
-    <dt><%= glossary.name %></dt>
-    <dd><%= link_to glossary.description, glossary_path(glossary) %></dd>
+    <dt><%= link_to glossary.name, glossary_path(glossary) %></dt>
+    <dd><%= glossary.description %></dd>
   <% end %>
 </dl>

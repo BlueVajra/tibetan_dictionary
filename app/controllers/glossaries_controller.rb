@@ -23,6 +23,7 @@ class GlossariesController < ApplicationController
 
   end
   def show
-    
+    @glossary = Glossary.find(params[:id])
+    @definitions = Glossary.find(params[:id]).definitions.paginate(:page => params[:page], :per_page => 30)
   end
 end

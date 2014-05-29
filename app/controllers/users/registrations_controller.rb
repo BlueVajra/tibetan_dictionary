@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource_saved
       @glossary = Glossary.new
       @glossary.user_id = resource.id
-      @glossary.name = resource.email
+      @glossary.name = "#{resource.email}'s Public Glossary"
       @glossary.description = "#{resource.email}'s Public Glossary"
       @glossary.save
 
