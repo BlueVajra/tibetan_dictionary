@@ -1,23 +1,22 @@
-<h2>Add a New Term</h2>
-<p>Please enter the new term below.</p>
+<div class="crud_form">
+  <h2>Add a New Term</h2>
+  <p>Please enter the new term below.</p>
 
+  <% if @term.errors.any? %>
+    <div class="errors">
+      <ul>
+        <% @term.errors.full_messages.each do |msg| %>
+          <li class="error"><span><%= msg %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-
-<% if @term.errors.any? %>
-  <div class="errors">
-    <ul>
-      <% @term.errors.full_messages.each do |msg| %>
-        <li class="error"><span><%= msg %></span></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_for @term do |f| %>
-  <%= f.label :wyl %>
-  <%= f.text_field :wyl %>
-  <%= f.label :tib %>
-  <%= f.text_field :tib %>
-  <%= f.submit 'Submit' %>
-
-<% end %>
+  <%= form_for @term do |f| %>
+    <%= f.label :wyl %>
+    <%= f.text_field :wyl %>
+    <%= f.label :tib %>
+    <%= f.text_field :tib %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+</div>

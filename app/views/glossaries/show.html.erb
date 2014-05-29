@@ -1,5 +1,8 @@
 <h2><%= @glossary.name %></h2>
 <h3><%= @glossary.description %></h3>
+<div class="controls">
+  <%= link_to "Edit Glossary", edit_glossary_path(@glossary) %>
+</div>
 <table class="glossary_terms">
   <% @definitions.each do |definition| %>
     <tr>

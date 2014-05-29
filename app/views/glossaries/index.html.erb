@@ -1,10 +1,10 @@
-<h2>My Glossaries</h2>
-
-<%= link_to "Add New Glossary", new_glossary_path, class: 'button' %>
-
-<dl>
-  <% @glossaries.each do |glossary| %>
-    <dt><%= link_to glossary.name, glossary_path(glossary) %></dt>
-    <dd><%= glossary.description %></dd>
-  <% end %>
-</dl>
+<div class="glossaries">
+  <h2>My Glossaries</h2>
+  <%= link_to "Add New Glossary", new_glossary_path, class: 'button ' %>
+  <dl>
+    <% @glossaries.each do |glossary| %>
+      <dt><%= link_to glossary.name, glossary_path(glossary) %></dt>
+      <dd><%= glossary.description %></dd>
+    <% end %>
+  </dl>
+</div>

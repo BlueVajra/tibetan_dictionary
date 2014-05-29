@@ -19,6 +19,12 @@ feature "Managing glossaries" do
     click_on "My Glossaries"
     click_on "Test"
     expect(page).to have_content "Description Here"
+    click_on "Edit Glossary"
+    fill_in 'glossary[name]', with: "Test New"
+    fill_in 'glossary[description]', with: "New Description goes here"
+    click_button 'Update'
+
+    expect(page).to have_content "Test New"
   end
 
   scenario "a user's definition gets added to auto generated glossary" do

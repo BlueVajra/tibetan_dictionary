@@ -120,7 +120,7 @@ footer {
   }
 }
 
-.authentication_form{
+.authentication_form, .crud_form{
   border:1px solid steelblue;
   padding:1em;
   border-radius:5px;
@@ -129,6 +129,11 @@ footer {
     @include span-columns(6);
     @include shift(3)
   }
+}
+.crud_form{
+  border:1px solid darken(#E6AF63, 30%);
+  @include linear-gradient(#E6AF63, darken(#E6AF63, 10%));
+
 }
 
 .errors{
@@ -143,4 +148,14 @@ footer {
 //  border-color:$error-color
   border:1px solid darken($error-color, 50%);
   background-color:$error-color;
+}
+
+.button{
+  @extend %button;
+}
+.glossaries{
+  .button{
+    float:right;
+    margin-top:-2em;
+  }
 }

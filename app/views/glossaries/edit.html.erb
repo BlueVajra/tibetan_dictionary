@@ -1,11 +1,11 @@
 <div class="crud_form">
-  <h2>Add a New Glossary</h2>
+  <h2>Edit Glossary</h2>
 
   <%= form_for @glossary do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <%= f.label :description %>
     <%= f.text_area :description %>
-    <%= f.submit "Add Glossary" %>
+    <%= f.submit "Update" %>
   <% end %>
 </div>
