@@ -1,12 +1,17 @@
-<h2>Tibetan Dictionary</h2>
+<div class="tib_terms">
+  <h2>Tibetan Dictionary</h2>
 
-<div class="controls"><%= link_to "Add New Term", new_tib_term_path %></div>
-<h3>Terminology</h3>
+  <div class="controls">
+    <%= link_to "Add New Term", new_tib_term_path %>
+  </div>
 
-<ul class="terms">
-  <% @terms.each do |term| %>
-    <li><%= link_to term.wyl, tib_term_path(term.id) %> - <%= term.tib %></li>
-  <% end %>
-</ul>
+  <h3>Terminology</h3>
 
-<%= will_paginate @terms %>
+  <ul class="terms">
+    <% @terms.each do |term| %>
+      <li><%= link_to term.wyl, tib_term_path(term.id) %> - <%= term.tib %></li>
+    <% end %>
+  </ul>
+
+  <%= will_paginate @terms %>
+</div>

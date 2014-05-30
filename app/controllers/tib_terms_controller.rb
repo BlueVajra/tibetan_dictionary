@@ -28,8 +28,29 @@ class TibTermsController < ApplicationController
     end
   end
 
+  # THESE ARE POSSIBILITIES FOR FILTERING QUERIES
+  # @term.definitions.includes(:glossary).references(:glossary).where(glossaries: {private: false}).each do |definition|
+
+  # tib_term
+  # def definitions_for_user(user)
+  #  all_records = definitions.includes(:glossary)
+  #  all_records.select do |definition|
+  #    definition.glossary.private == false || definition.glossary.user == user
+  #  end
+  #end
+
+  # definition
+  # def self.available_for_term(term, user)
+  #  all_records = where(term_id: term).includes(:glossary)
+  #  all_records.select do |definition|
+  #    definition.glossary.private == false || definition.glossary.user == user
+  #  end
+  #end
+
   def show
     @term = TibTerm.find(params[:id])
+    #@definitions = @term.definitions.includes(:glossary).references(:glossary).where(glossaries: {private: false})
+    @definitions = @term.definitions_for_user(current_user)
     @definition = Definition.new
   end
 

@@ -5,4 +5,13 @@ class Definition < ActiveRecord::Base
   validates :entry, presence: {message: 'cannot be blank.'}
   validates :glossary_id, presence: {message: 'glossary_id cannot be blank.'}
   validates :tib_term_id, presence: {message: 'term_id cannot be blank.'}
+
+  # this is one option...
+  def self.available_for_term(term, user)
+    all_records = where(term_id: term).includes(:glossary)
+    all_records.select do |definition|
+      definition.glossary.private == false || definition.glossary.user == user
+    end
+  end
+
 end

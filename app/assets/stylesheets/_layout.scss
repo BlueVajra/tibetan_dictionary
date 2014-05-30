@@ -71,13 +71,7 @@ footer {
 
 }
 
-.controls{
-  float:right;
-}
 
-.controls a {
-  @include button;
-}
 
 .definitions{
 
@@ -133,7 +127,10 @@ footer {
 .crud_form{
   border:1px solid darken(#E6AF63, 30%);
   @include linear-gradient(#E6AF63, darken(#E6AF63, 10%));
-
+  input[type="submit"]{
+   display:block;
+    margin-top:1em;
+  }
 }
 
 .errors{
@@ -145,17 +142,20 @@ footer {
 
 .field_with_errors textarea,
 .field_with_errors input{
-//  border-color:$error-color
   border:1px solid darken($error-color, 50%);
   background-color:$error-color;
 }
 
-.button{
-  @extend %button;
+.glossaries, .glossary, .tib_terms{
+  position:relative;
 }
-.glossaries{
-  .button{
-    float:right;
-    margin-top:-2em;
-  }
+
+.controls{
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+.controls a {
+  @include button;
 }

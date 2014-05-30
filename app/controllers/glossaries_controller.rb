@@ -14,7 +14,7 @@ class GlossariesController < ApplicationController
     @glossary.user_id = current_user.id
     @glossary.name = params[:glossary][:name]
     @glossary.description = params[:glossary][:description]
-
+    @glossary.private = params[:glossary][:private]
     if @glossary.save
       redirect_to '/glossaries'
     else
@@ -36,8 +36,9 @@ class GlossariesController < ApplicationController
     @glossary = Glossary.find(params[:id])
     @glossary.name = params[:glossary][:name]
     @glossary.description = params[:glossary][:description]
+    @glossary.private = params[:glossary][:private]
     if @glossary.save
-      redirect_to glossaries_pathp
+      redirect_to glossaries_path
     else
       render :edit
     end

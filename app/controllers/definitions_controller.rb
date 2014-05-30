@@ -1,15 +1,5 @@
 class DefinitionsController < ApplicationController
   before_action :authenticate_user!, :only => [:create]
-  #def index
-  #
-  #end
-  #def new
-  #
-  #end
-  #
-  #def show
-  #  @definition = Definition.new
-  #end
 
   def create
     @term = TibTerm.find(params[:tib_term_id])

@@ -12,6 +12,32 @@ feature "Managing glossaries" do
 
   end
 
+  scenario "user can create a glossary" do
+    create_definitions
+    sign_in_user
+
+    click_on "My Glossaries"
+    click_on "Add New Glossary"
+    fill_in 'glossary[name]', with: "New Glossary"
+    fill_in 'glossary[description]', with: "New Description goes here"
+    check 'glossary[private]'
+    click_button 'Add Glossary'
+
+    expect(page).to have_content "New Glossary"
+    expect(page).to have_content "Private Glossary"
+  end
+
+  scenario "User cannot see entries for private glossaries" do
+    create_private_definitions
+    sign_in_user
+
+    click_on "Dictionary"
+    click_on "Test1"
+
+    expect(page).to have_content "Entry 1"
+    expect(page).to_not have_content "Entry 3"
+  end
+
   scenario "user can edit a glossary they created" do
     create_definitions
     sign_in_user

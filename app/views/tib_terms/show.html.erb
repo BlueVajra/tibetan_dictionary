@@ -2,13 +2,13 @@
 
 <div class="definitions">
   <dl>
-    <% @term.definitions.each do |definition| %>
+    <!--@term.definitions.includes(:glossary).references(:glossary).where(glossaries: {private: false}).each do |definition| -->
+    <% @definitions.each do |definition| %>
       <dt><%= definition.glossary.description %></dt>
-      <dd><%= simple_format(definition.entry) %></dd>
+      <dd><%= simple_format(add_links(definition.entry)) %></dd>
     <% end %>
   </dl>
 </div>
-
 
 <div class="add_definition">
   <h4>Add a Definition or Comment</h4>
@@ -23,7 +23,6 @@
         </ul>
       </div>
     <% end %>
-
 
     <%= form_for [@term, @definition], url: tib_term_definitions_path(@term), method: "post" do |f| %>
       <%= f.label :entry %>

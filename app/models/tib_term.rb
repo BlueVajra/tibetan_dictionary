@@ -8,4 +8,13 @@ class TibTerm < ActiveRecord::Base
     # where(:title, query) -> This would return an exact match of the query
     where("wyl like ?", "%#{query}%")
   end
+
+  # this is another option...
+  def definitions_for_user(user)
+    all_records = definitions.includes(:glossary)
+    all_records.select do |definition|
+      definition.glossary.private == false || definition.glossary.user == user
+    end
+  end
+
 end

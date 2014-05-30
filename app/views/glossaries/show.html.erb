@@ -1,15 +1,19 @@
-<h2><%= @glossary.name %></h2>
-<h3><%= @glossary.description %></h3>
-<div class="controls">
-  <%= link_to "Edit Glossary", edit_glossary_path(@glossary) %>
-</div>
-<table class="glossary_terms">
-  <% @definitions.each do |definition| %>
-    <tr>
-      <td><%= definition.tib_term.wyl %></td>
-      <td> <%= definition.entry %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="glossary">
+  <h2><%= @glossary.name %></h2>
+  <h3><%= @glossary.description %></h3>
 
-<%= will_paginate @definitions %>
+  <div class="controls">
+    <%= link_to "Edit Glossary", edit_glossary_path(@glossary), class: "button" %>
+  </div>
+
+  <table class="glossary_terms">
+    <% @definitions.each do |definition| %>
+      <tr>
+        <td><%= definition.tib_term.wyl %></td>
+        <td> <%= definition.entry %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @definitions %>
+</div>

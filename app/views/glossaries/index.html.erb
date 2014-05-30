@@ -1,9 +1,12 @@
 <div class="glossaries">
   <h2>My Glossaries</h2>
-  <%= link_to "Add New Glossary", new_glossary_path, class: 'button ' %>
+
+  <div class="controls">
+    <%= link_to "Add New Glossary", new_glossary_path %>
+  </div>
   <dl>
     <% @glossaries.each do |glossary| %>
-      <dt><%= link_to glossary.name, glossary_path(glossary) %></dt>
+      <dt><%= link_to glossary.name, glossary_path(glossary) %><%= " (Private Glossary)" if glossary.private? %></dt>
       <dd><%= glossary.description %></dd>
     <% end %>
   </dl>
