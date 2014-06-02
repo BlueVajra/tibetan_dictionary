@@ -4,10 +4,12 @@
   <div class="controls">
     <%= link_to "Add New Glossary", new_glossary_path %>
   </div>
-  <dl>
+  <table class="glossary_list">
     <% @glossaries.each do |glossary| %>
-      <dt><%= link_to glossary.name, glossary_path(glossary) %><%= " (Private Glossary)" if glossary.private? %></dt>
-      <dd><%= glossary.description %></dd>
+      <tr>
+        <td><%= link_to glossary.name, glossary_path(glossary) %><%= " (Private Glossary)" if glossary.private? %></td>
+        <td><%= glossary.description %></td>
+      </tr>
     <% end %>
-  </dl>
+  </table>
 </div>

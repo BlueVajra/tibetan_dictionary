@@ -9,7 +9,7 @@
   <table class="glossary_terms">
     <% @definitions.each do |definition| %>
       <tr>
-        <td><%= definition.tib_term.wyl %></td>
+        <td><%= link_to definition.tib_term.wyl, tib_term_path(definition.tib_term) %></td>
         <td> <%= definition.entry %></td>
       </tr>
     <% end %>

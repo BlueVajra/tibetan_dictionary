@@ -14,7 +14,7 @@ feature "Managing glossaries" do
 
   scenario "user can create a glossary" do
     create_definitions
-    sign_in_user
+    #sign_in_user
 
     click_on "My Glossaries"
     click_on "Add New Glossary"
@@ -29,7 +29,7 @@ feature "Managing glossaries" do
 
   scenario "User cannot see entries for private glossaries" do
     create_private_definitions
-    sign_in_user
+    #sign_in_user
 
     click_on "Dictionary"
     click_on "Test1"
@@ -40,7 +40,7 @@ feature "Managing glossaries" do
 
   scenario "user can edit a glossary they created" do
     create_definitions
-    sign_in_user
+    #sign_in_user
 
     click_on "My Glossaries"
     click_on "Test"
@@ -66,5 +66,31 @@ feature "Managing glossaries" do
     expect(page).to have_content("Some entry")
   end
 
+  scenario "a user can change the glossary they want to add a definition to" do
+    pending
+    @term = TibTerm.create!(wyl: "My term")
+    create_private_definitions
+
+    visit tib_term_path(@term)
+
+    page.select 'Test 2', :from => 'glossary'
+    fill_in 'definition[entry]', with: "Some entry"
+    click_button "Submit"
+
+    expect(page).to have_content("bob@bob.com's Public Glossary")
+    expect(page).to have_content("Some entry")
+  end
+
+  scenario "a user can set a glossary as default" do
+    pending
+    create_private_definitions
+
+    visit '/'
+    click_on "My Glossaries"
+    click_on "Test"
+
+    expect(find("table.glossary_terms tr:first-of-type")).to have_content "default"
+
+  end
 
 end

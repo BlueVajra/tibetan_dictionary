@@ -9,7 +9,7 @@
 
   <ul class="terms">
     <% @terms.each do |term| %>
-      <li><%= link_to term.wyl, tib_term_path(term.id) %> - <%= term.tib %></li>
+      <li><%= link_to term.wyl, tib_term_path(term.id) %></li>
     <% end %>
   </ul>
 

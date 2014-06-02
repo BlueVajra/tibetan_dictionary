@@ -26,7 +26,8 @@ module FeatureHelpers
   end
 
   def create_definitions
-    user1 = User.create!(email:"bob@bob.com", password: "12341234")
+    sign_up_user
+    user1 = User.find_by(email:"bob@bob.com")
     gloss = Glossary.create!(name: "Test", description: "Description Here", user_id: user1.id)
     term1 = TibTerm.create!(wyl: "Test1")
     term2 = TibTerm.create!(wyl: "Test2")
@@ -45,9 +46,11 @@ module FeatureHelpers
   end
 
   def create_private_definitions
-    user1 = User.create!(email:"bob@bob.com", password: "12341234")
+    sign_up_user
+    user1 = User.find_by(email:"bob@bob.com")
     user2 = User.create!(email:"joe@joe.com", password: "12341234")
     gloss = Glossary.create!(name: "Test", description: "Description Here", user_id: user1.id)
+    gloss1 = Glossary.create!(name: "Test 2", description: "Another Description Here", user_id: user1.id)
     gloss2 = Glossary.create!(name: "Private Test", description: "Description Here", user_id: user2.id, private: true)
 
     term1 = TibTerm.create!(wyl: "Test1")

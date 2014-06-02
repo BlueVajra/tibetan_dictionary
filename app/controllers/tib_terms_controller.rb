@@ -52,6 +52,7 @@ class TibTermsController < ApplicationController
     #@definitions = @term.definitions.includes(:glossary).references(:glossary).where(glossaries: {private: false})
     @definitions = @term.definitions_for_user(current_user)
     @definition = Definition.new
+    #@glossaries = current_user.glossaries
   end
 
   private
