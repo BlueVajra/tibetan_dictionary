@@ -17,4 +17,5 @@ class TibTerm < ActiveRecord::Base
     end
   end
 
+
 end

@@ -50,13 +50,30 @@ class TibTermsController < ApplicationController
   def show
     @term = TibTerm.find(params[:id])
     #@definitions = @term.definitions.includes(:glossary).references(:glossary).where(glossaries: {private: false})
-    @definitions = @term.definitions_for_user(current_user)
+    filtered_definitions = @term.definitions_for_user(current_user)
+    unique_glossaries = glossaries_for(filtered_definitions)
+    @glossaries = sort_definitions(filtered_definitions, unique_glossaries)
+
+
     @definition = Definition.new
-    #@glossaries = current_user.glossaries
   end
 
   private
   def remove_punctuation(term)
     term.strip
+  end
+
+  def glossaries_for(definitions)
+    definitions.map { |definition| definition.glossary }.uniq
+  end
+
+  def sort_definitions(definitions, glossaries)
+    glossaries.map do |glossary|
+      result =[]
+      result << glossary
+      result << definitions.select do |definition|
+        definition.glossary_id == glossary.id
+      end
+    end
   end
 end
