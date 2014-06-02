@@ -43,4 +43,10 @@ class GlossariesController < ApplicationController
       render :edit
     end
   end
+
+  def default
+    current_user.default_glossary = params[:id]
+    current_user.save
+    redirect_to glossaries_path
+  end
 end

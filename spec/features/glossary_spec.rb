@@ -24,7 +24,7 @@ feature "Managing glossaries" do
     click_button 'Add Glossary'
 
     expect(page).to have_content "New Glossary"
-    expect(page).to have_content "Private Glossary"
+    expect(page).to have_content "private"
   end
 
   scenario "User cannot see entries for private glossaries" do
@@ -53,20 +53,37 @@ feature "Managing glossaries" do
     expect(page).to have_content "Test New"
   end
 
-  scenario "a user's definition gets added to auto generated glossary" do
-    @term = TibTerm.create!(wyl: "My term")
-    sign_up_user
+  scenario "a user's definition gets added to default glossary" do
+    create_private_definitions
 
-    visit tib_term_path(@term)
+    visit '/tib_terms'
+    click_on 'Test1'
 
     fill_in 'definition[entry]', with: "Some entry"
     click_button "Submit"
 
     expect(page).to have_content("bob@bob.com's Public Glossary")
     expect(page).to have_content("Some entry")
+
+    # user selects other glossary
+    # user adds new definition
+    #expect definition to appear in different glossary
   end
 
-  scenario "a user can change the glossary they want to add a definition to" do
+  scenario "a user can see if glossary is default and change default to another" do
+    create_private_definitions
+    visit '/'
+    click_on "My Glossaries"
+    expect(find("table.glossary_list tr:nth-child(2)")).to have_content "default"
+    within("table.glossary_list tr:nth-child(3)") do
+      click_on "make default"
+    end
+    expect(find("table.glossary_list tr:nth-child(2)")).to have_content "make default"
+    expect(find("table.glossary_list tr:nth-child(3)")).to have_content "default"
+  end
+
+
+  scenario "a user can change the glossary they want to add a definition to on the term page" do
     pending
     @term = TibTerm.create!(wyl: "My term")
     create_private_definitions
@@ -79,18 +96,6 @@ feature "Managing glossaries" do
 
     expect(page).to have_content("bob@bob.com's Public Glossary")
     expect(page).to have_content("Some entry")
-  end
-
-  scenario "a user can set a glossary as default" do
-    pending
-    create_private_definitions
-
-    visit '/'
-    click_on "My Glossaries"
-    click_on "Test"
-
-    expect(find("table.glossary_terms tr:first-of-type")).to have_content "default"
-
   end
 
 end

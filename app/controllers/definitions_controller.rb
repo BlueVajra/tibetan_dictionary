@@ -7,7 +7,7 @@ class DefinitionsController < ApplicationController
     @definition.tib_term_id = @term.id
     @definition.entry = params[:definition][:entry]
       #get glossary from params instead of picking first id below
-    @definition.glossary_id = current_user.glossaries.first.id
+    @definition.glossary_id = current_user.default_glossary
 
 
 

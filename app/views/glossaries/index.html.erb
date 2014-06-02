@@ -5,10 +5,18 @@
     <%= link_to "Add New Glossary", new_glossary_path %>
   </div>
   <table class="glossary_list">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Private</th>
+      <th>Default</th>
+    </tr>
     <% @glossaries.each do |glossary| %>
       <tr>
-        <td><%= link_to glossary.name, glossary_path(glossary) %><%= " (Private Glossary)" if glossary.private? %></td>
+        <td><%= link_to glossary.name, glossary_path(glossary) %></td>
         <td><%= glossary.description %></td>
+        <td><%= "(private)" if glossary.private? %></td>
+        <td><%= glossary.id == current_user.default_glossary.to_i ? "(default)" : (link_to "make default", default_glossary_path(glossary), method: :put) %></td>
       </tr>
     <% end %>
   </table>

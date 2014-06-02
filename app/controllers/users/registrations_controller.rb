@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @glossary.name = "#{resource.email}'s Public Glossary"
       @glossary.description = "#{resource.email}'s Public Glossary"
       @glossary.save
+      resource.default_glossary = @glossary.id
 
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?

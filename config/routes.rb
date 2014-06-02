@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :glossaries
 
+  put '/glossaries/:id/default', to: 'glossaries#default', as: :default_glossary
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
