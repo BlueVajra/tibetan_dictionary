@@ -84,17 +84,16 @@ feature "Managing glossaries" do
 
 
   scenario "a user can change the glossary they want to add a definition to on the term page" do
-    pending
     @term = TibTerm.create!(wyl: "My term")
     create_private_definitions
 
     visit tib_term_path(@term)
 
-    page.select 'Test 2', :from => 'glossary'
+    page.select 'Test 2', :from => 'definition[glossary_id]'
     fill_in 'definition[entry]', with: "Some entry"
     click_button "Submit"
 
-    expect(page).to have_content("bob@bob.com's Public Glossary")
+    expect(page).to have_content("Test 2")
     expect(page).to have_content("Some entry")
   end
 

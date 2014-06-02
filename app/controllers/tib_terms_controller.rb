@@ -49,11 +49,9 @@ class TibTermsController < ApplicationController
 
   def show
     @term = TibTerm.find(params[:id])
-    #@definitions = @term.definitions.includes(:glossary).references(:glossary).where(glossaries: {private: false})
     filtered_definitions = @term.definitions_for_user(current_user)
     unique_glossaries = glossaries_for(filtered_definitions)
     @glossaries = sort_definitions(filtered_definitions, unique_glossaries)
-
 
     @definition = Definition.new
   end

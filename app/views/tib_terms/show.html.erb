@@ -2,7 +2,7 @@
 <div class="definitions">
   <dl>
     <% @glossaries.each do |glossary| %>
-      <dt><%= glossary[0].description %></dt>
+      <dt><%= link_to glossary[0].name, glossary_path(glossary[0]), alt: glossary[0].description %></dt>
       <% glossary[1].each do |definition| %>
         <dd><%= simple_format(add_links(definition.entry)) %></dd>
       <% end %>
@@ -11,7 +11,7 @@
 </div>
 
 <div class="add_definition">
-  <h4>Add a Definition or Comment</h4>
+  <h4>Add a Definition</h4>
   <% if user_signed_in? %>
 
     <% if @definition.errors.any? %>
@@ -25,6 +25,8 @@
     <% end %>
 
     <%= form_for [@term, @definition], url: tib_term_definitions_path(@term), method: "post" do |f| %>
+      <%= f.label "Glossary" %>
+      <%= f.collection_select :glossary_id, current_user.glossaries, :id, :name, {:selected => current_user.default_glossary} %>
       <%= f.label :entry %>
       <%= f.text_area :entry %>
       <%= f.submit "Submit" %>

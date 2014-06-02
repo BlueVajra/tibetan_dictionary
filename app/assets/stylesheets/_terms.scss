@@ -18,7 +18,7 @@
     margin:0;
     margin-top:1em;
     font-weight:900;
-    font-size:.8em;
+    font-size:.9em;
     border:1px solid rgba(0,0,0,.05);
     border-radius:2px;
     padding:0 .4em;
@@ -26,6 +26,9 @@
     box-shadow: 3px 3px 0px #dedede;
     background-color:steelblue;
     color:white;
+    a{
+      color: white;
+    }
   }
   dd{
     border:1px solid rgba(0,0,0,.05);
@@ -50,6 +53,13 @@
   background-color:lightsteelblue;
   textarea{
     height:8em;
+  }
+  select{
+    height:1.5em;
+    width:100%;
+  }
+  h4{
+    margin-bottom:.5em;
   }
 }
 

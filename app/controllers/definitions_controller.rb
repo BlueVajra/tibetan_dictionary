@@ -7,10 +7,7 @@ class DefinitionsController < ApplicationController
     @definition.tib_term_id = @term.id
     @definition.entry = params[:definition][:entry]
       #get glossary from params instead of picking first id below
-    @definition.glossary_id = current_user.default_glossary
-
-
-
+    @definition.glossary_id = params[:definition][:glossary_id]
     if @definition.save
 
       redirect_to tib_term_path(@term)
