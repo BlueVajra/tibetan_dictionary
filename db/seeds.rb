@@ -5,7 +5,7 @@
   user.password_confirmation = 'password1'
 end
 
-File.open(Rails.root + "db/dictionaries/ry-dic2003-prop.txt", 'r') do |f|
+File.open(Rails.root + "db/dictionaries/ry-dic2003-prop_short.txt", 'r') do |f|
 
   error_lines = []
 
