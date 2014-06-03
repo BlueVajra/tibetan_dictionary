@@ -77,7 +77,11 @@ footer {
   h3{
     margin-bottom:1em;
   }
-  li{
+  h4{
+    margin-bottom:.5em;
+
+  }
+  .user_info li{
     font-size:1.5em;
     display:block;
     padding:.5em;
@@ -90,6 +94,15 @@ footer {
       color:white;
       text-decoration: underline;
     }
+
+  }
+  .future{
+    padding-left:2em;
+    li{
+      list-style:circle;
+      font-size:1.3em;
+      margin-top:.3em;
+    }
   }
   @include media($large-screen) {
     @include span-columns(4);
@@ -97,6 +110,9 @@ footer {
 }
 
 .about_project {
+  h3{
+    margin-bottom:.8em;
+  }
   @include media($large-screen) {
     @include span-columns(8);
   }
