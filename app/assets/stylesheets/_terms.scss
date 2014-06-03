@@ -7,6 +7,10 @@
   }
 }
 
+h4.search_results, h4.exact_match{
+  margin-top:1em;
+}
+
 .definitions{
 
   @include media ($large-screen) {

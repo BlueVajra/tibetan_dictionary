@@ -4,8 +4,16 @@
   <div class="controls">
     <%= link_to "Add New Term", new_tib_term_path %>
   </div>
+  <% if @search %>
+    <% if @term %>
+      <h4 class="exact_match">Exact Match</h4>
+      <%= link_to @term.wyl, tib_term_path(@term.id) %>
+    <% end %>
+    <h4 class="search_results">Search Results</h4>
 
-  <h3>Terminology</h3>
+  <% else %>
+    <h3>Terminology</h3>
+  <% end %>
 
   <ul class="terms">
     <% @terms.each do |term| %>

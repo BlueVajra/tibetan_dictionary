@@ -32,7 +32,9 @@ body{
 header {
 
   margin: 0;
-  @include linear-gradient(#E6AF63, darken(#E6AF63, 10%));
+//  @include linear-gradient(#E6AF63, darken(#E6AF63, 10%));
+  background-color: rgba(230, 150, 0, .9);
+  border-bottom:1px solid lighten(rgb(230, 150, 0), 20%);
 }
 
 section.main{

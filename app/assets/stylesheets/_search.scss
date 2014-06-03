@@ -30,11 +30,11 @@
       background: $search-bar-background;
       margin: 0;
       border:$search-bar-border;
-      color:#c5c9cd;
+      color:white;
     }
 
     button[type=submit] {
-      @include button(simple, lighten($search-bar-background, 10));
+      @include button(simple, lighten($search-bar-background, 60%));
       @include position(absolute, 0.3em 0.3em 0.3em 0);
       outline: none;
       border:1px solid rgba(0,0,0, .1);

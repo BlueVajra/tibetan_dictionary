@@ -4,7 +4,7 @@
   background: image-url("woodblock.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  //  background-attachment: fixed;
   background-position: center 30%;
   .wrapper {
     background-color: rgba(248, 247, 216, 0.3);
@@ -22,18 +22,31 @@
 }
 
 .notes {
+  @include linear-gradient(#ffffff, lighten(#708090, 40%));
+  .content_container {
+    padding-bottom: 0;
+  }
   .media_image {
     width: 20em;
-    margin:0 auto;
+    background-color: #3d4a57;
+  }
+  h4{
+    font-size:1.9em;
+    margin-left:.8em;
   }
   @include media($large-screen) {
     padding-top: 2em;
     .media_image {
-      width: 20em;
-      float: left;
+      @include span-columns(4);
+      font-size: 4em;
+      padding: 1.5em 0;
+      text-align: center;
+      border-radius:10px;
+      color:white;
+      font-weight:900;
     }
     .media_info {
-      margin-left: 22em;
+      @include span-columns(8);
     }
     ul li {
       list-style: circle;
@@ -134,4 +147,8 @@
       }
     }
   }
+}
+
+section.main .notes .content_container {
+  padding-bottom: 3em;
 }

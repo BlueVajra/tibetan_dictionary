@@ -12,7 +12,6 @@ File.open(Rails.root + "db/dictionaries/ry-dic2003-prop.txt", 'r') do |f|
   f.each_line do |line|
     begin
       if line.strip != ""
-        #chags med ri chos - a famous retreat manual popular in both the rnying ma and bka' brgyud traditions, composed by kar ma chags med ra ga a sya (1613-1678) [tsd]
         @line = line
         term = @line.slice!(/^.*? -/).chop.strip
         puts "TERM: #{term}"

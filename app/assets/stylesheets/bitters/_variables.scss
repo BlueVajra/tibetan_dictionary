@@ -1,10 +1,13 @@
 // Typography
 ///////////////////////////////////////////////////////////////////////////////
+@import url(http://fonts.googleapis.com/css?family=Lato:300);
+@import url(http://fonts.googleapis.com/css?family=Oswald:400);
+
 $sans-serif: $helvetica;
 $serif: $georgia;
 
 $base-font-family: $sans-serif;
-$header-font-family: $base-font-family;
+$header-font-family: 'Lato', $base-font-family;
 
 // Sizes
 ///////////////////////////////////////////////////////////////////////////////

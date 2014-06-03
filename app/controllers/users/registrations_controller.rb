@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @glossary.description = "#{resource.email}'s Public Glossary"
       @glossary.save
       resource.default_glossary = @glossary.id
-
+      resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)

@@ -5,17 +5,18 @@ class TibTerm < ActiveRecord::Base
   validates :wyl, uniqueness: {message: "This term already exists, please check the spelling"}
 
   def self.search(query)
-    # where(:title, query) -> This would return an exact match of the query
     where("wyl like ?", "%#{query}%")
   end
 
-  # this is another option...
+  def self.search_exact(query)
+    where(:wyl, query)
+  end
+
   def definitions_for_user(user)
     all_records = definitions.includes(:glossary)
     all_records.select do |definition|
       definition.glossary.private == false || definition.glossary.user == user
     end
   end
-
 
 end
