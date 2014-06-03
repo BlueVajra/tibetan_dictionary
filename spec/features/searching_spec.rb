@@ -22,7 +22,9 @@ feature "Search terms and see definitions" do
     click_on "Test1"
     expect(page).to have_content "Test link"
     click_on "Test2"
-    click_on "Test2"
+    within(".terms") do
+      click_link "Test2"
+    end
     expect(page).to have_content "Link to Here"
   end
 end
