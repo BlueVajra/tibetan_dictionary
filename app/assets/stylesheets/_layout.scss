@@ -37,11 +37,11 @@ header {
 
 section.main{
   height:auto;
-  padding:0 .5em;
+//  padding:0 .5em;
 }
 
 
-#header_container, section.main > *, #footer_container, nav > *{
+#header_container, section.main .content_container, #footer_container, nav > *{
   @include outer-container;
 }
 

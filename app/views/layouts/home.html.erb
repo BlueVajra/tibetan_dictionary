@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TibetanDictionary</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="body_container">
+  <header>
+    <%= render 'layouts/user_navigation' %>
+    <div id="header_container">
+      <h1>Tibetan Translator Community</h1>
+      <h2>A Crowd-sourced Tibetan Dictionary</h2>
+    </div>
+  </header>
+  <%= render 'layouts/navigation' %>
+  <section class="main">
+    <%= yield %>
+  </section>
+  <footer>
+    <div id="footer_container">
+      <aside>Dedicated to Tibetan Translators past, present, and future</aside>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

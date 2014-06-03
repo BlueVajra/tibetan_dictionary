@@ -1,0 +1,137 @@
+.welcome {
+  border-top: 1px solid darkgray;
+  border-bottom: 3px solid #3d4a57;
+  background: image-url("woodblock.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center 30%;
+  .wrapper {
+    background-color: rgba(248, 247, 216, 0.3);
+    width: 100%;
+    height: 100%;
+  }
+  h3 {
+    text-align: center;
+    font-size: 4em;
+    color: white;
+    padding-top: 1em;
+    font-weight: 900;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.notes {
+  .media_image {
+    width: 20em;
+    margin:0 auto;
+  }
+  @include media($large-screen) {
+    padding-top: 2em;
+    .media_image {
+      width: 20em;
+      float: left;
+    }
+    .media_info {
+      margin-left: 22em;
+    }
+    ul li {
+      list-style: circle;
+      margin-left: 2em;
+      font-size: 1.5em;
+      margin-top: .3em;
+    }
+  }
+}
+
+.information {
+  background: image-url("pecha_sample.png");
+  border-top: 3px solid #3d4a57;
+  border-bottom: 3px solid lighten(#3d4a57, 20%);
+  .wrapper {
+    background-color: rgba(230, 150, 0, .9);
+    width: 100%;
+    height: 100%;
+    //    @include linear-gradient(#9B0B14, #690706);
+    //    @include linear-gradient(#E6AF63, darken(#E6AF63, 10%));
+    .content_container {
+      padding-bottom: 3em;
+      color: darken(#E6AF63, 10%)
+    }
+  }
+  h4 {
+    text-align: center;
+    font-size: 4em;
+    color: white;
+    padding-top: 0;
+    font-weight: 900;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+  }
+  p {
+    margin-top: 1em;
+    margin-bottom: 0;
+    font-size: 2em;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.short_info {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  section {
+    clear: both;
+    padding-top: 1em;
+    h3 {
+      font-size: 1.3em;
+      display: block;
+      background-color: #3d4a57;
+      border-radius: 50%;
+      width: 5em;
+      height: 5em;
+      float: left;
+      padding: 1.7em 0;
+      text-align: center;
+      color: white;
+    }
+    h4 {
+      text-align: left;
+      margin: .5em 0;
+      margin-left: 6em;
+    }
+    p {
+      display: block;
+      text-align: left;
+      margin-left: 9em;
+
+    }
+
+    @include media($large-screen) {
+      @include span-columns(4);
+      clear: none;
+      h3 {
+        font-size: 1.3em;
+        display: block;
+        background-color: #3d4a57;
+        border-radius: 50%;
+        width: 5em;
+        height: 5em;
+        margin: 0 auto;
+        padding: 1.7em 0;
+        text-align: center;
+        color: white;
+        float: none;
+      }
+      h4 {
+        text-align: center;
+        margin: .5em 0;
+      }
+      p {
+        text-align: center;
+        margin-left: 0;
+      }
+    }
+  }
+}
