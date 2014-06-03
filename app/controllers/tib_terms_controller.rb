@@ -53,7 +53,11 @@ class TibTermsController < ApplicationController
     filtered_definitions = @term.definitions_for_user(current_user)
     unique_glossaries = glossaries_for(filtered_definitions)
     @glossaries = sort_definitions(filtered_definitions, unique_glossaries)
-    @dd = dharma_dictionary(@term.wyl)
+    begin
+      @dd = dharma_dictionary(@term.wyl)
+    rescue
+      @dd = "There has been some error"
+    end
 
     @definition = Definition.new
   end
@@ -80,9 +84,9 @@ class TibTermsController < ApplicationController
   def dharma_dictionary(word)
 
     conn = Faraday.new(:url => 'http://rywiki.tsadra.org') do |faraday|
-      faraday.request  :url_encoded             # form-encode POST params
+      faraday.request :url_encoded # form-encode POST params
       #faraday.response :logger                  # log requests to STDOUT
-      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+      faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
     end
 
     #http://rywiki.tsadra.org/api.php?format=json&action=query&prop=revisions&titles=sems&rvprop=content&rvsection=0&rvparse=1
@@ -93,7 +97,6 @@ class TibTermsController < ApplicationController
 
     data = JSON.parse(response.body)
     id = data["query"]["pages"].keys[0]
-    p id
     page_info = data["query"]["pages"][id]["revisions"][0]["*"]
   end
 end

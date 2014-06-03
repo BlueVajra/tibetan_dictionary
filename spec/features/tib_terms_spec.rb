@@ -25,4 +25,5 @@ feature "Manage Terms" do
     expect(page).to have_content "bob@bob.com's Public Glossary"
 
   end
+
 end

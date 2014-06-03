@@ -96,5 +96,18 @@ feature "Managing glossaries" do
     expect(page).to have_content("Test 2")
     expect(page).to have_content("Some entry")
   end
+  scenario "user can edit definitions from their glossary" do
+    create_private_definitions
+    click_on 'My Glossaries'
+    click_on "Test"
+
+    within("table.glossary_terms tr:nth-child(1)") do
+      click_on "edit"
+    end
+    fill_in 'definition[entry]', with: "New and Improved"
+    click_on "Submit"
+    expect(page).to have_content "New and Improved"
+  end
+
 
 end
