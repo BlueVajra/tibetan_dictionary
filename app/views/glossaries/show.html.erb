@@ -11,6 +11,7 @@
       <tr>
         <td><%= link_to definition.tib_term.wyl, tib_term_path(definition.tib_term) %></td>
         <td> <%= definition.entry %></td>
+        <td><%= link_to "edit", edit_tib_term_definition_path(definition.tib_term, definition) %></td>
       </tr>
     <% end %>
   </table>

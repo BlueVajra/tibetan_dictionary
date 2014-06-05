@@ -7,6 +7,7 @@ end
 
 File.open(Rails.root + "db/ry-dic2003-prop_short.txt", 'r') do |f|
 
+
   error_lines = []
 
   f.each_line do |line|

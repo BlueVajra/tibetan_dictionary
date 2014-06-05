@@ -34,7 +34,7 @@ h4.search_results, h4.exact_match{
       color: white;
     }
   }
-  dd{
+  dd, .dd{
     border:1px solid rgba(0,0,0,.05);
     border-radius:2px;
     padding:.2em .3em;
@@ -46,7 +46,15 @@ h4.search_results, h4.exact_match{
       margin:0;
     }
   }
+  .dd{
+    padding:1em;
+    font-size:.8em;
+    p{
+      margin-top:.3em;
+    }
+  }
 }
+
 .add_definition{
   @include media ($large-screen) {
     @include span-columns(4);
@@ -66,6 +74,7 @@ h4.search_results, h4.exact_match{
     margin-bottom:.5em;
   }
 }
+
 
 .pagination{
   margin-top:1em;

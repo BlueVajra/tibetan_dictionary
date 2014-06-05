@@ -1,0 +1,20 @@
+<div class="crud_form">
+  <h2>Edit your Definition</h2>
+  <p>Please enter the new term below.</p>
+
+  <% if @definition.errors.any? %>
+    <div class="errors">
+      <ul>
+        <% @definition.errors.full_messages.each do |msg| %>
+          <li class="error"><span><%= msg %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form_for [@term, @definition], url: "/tib_terms/#{@term.id}/definitions/#{@definition.id}", method: :put do |f| %>
+    <%= f.label :entry %>
+    <%= f.text_area :entry %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+</div>

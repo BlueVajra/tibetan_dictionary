@@ -15,4 +15,28 @@ class DefinitionsController < ApplicationController
       render 'tib_terms/show'
     end
   end
+
+  def show
+
+  end
+
+  def edit
+    @term = TibTerm.find(params[:tib_term_id])
+    @definition = Definition.find(params[:id])
+  end
+
+  def update
+    @term = TibTerm.find(params[:tib_term_id])
+    @definition = Definition.find(params[:id])
+    @definition.entry = params[:definition][:entry]
+    if @definition.save
+
+      #redirect_to tib_term_path(@term)
+      redirect_to glossary_path(@definition.glossary)
+    else
+      render :edit
+    end
+
+
+  end
 end
