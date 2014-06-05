@@ -1,5 +1,6 @@
 <div class="glossary">
   <h2><%= @glossary.name %></h2>
+
   <h3><%= @glossary.description %></h3>
 
   <div class="controls">
@@ -8,13 +9,37 @@
 
   <table class="glossary_terms">
     <% @definitions.each do |definition| %>
-      <tr>
+      <tr class="glossary_term">
         <td><%= link_to definition.tib_term.wyl, tib_term_path(definition.tib_term) %></td>
-        <td> <%= definition.entry %></td>
-        <td><%= link_to "edit", edit_tib_term_definition_path(definition.tib_term, definition) %></td>
+        <td><%= definition.entry %></td>
+        <td><%= link_to "edit", edit_tib_term_definition_path(definition.tib_term, definition), class: "edit" %></td>
       </tr>
     <% end %>
   </table>
 
+  <%= form_for :tib_definition, remote: true, url: glossary_definitions_path(@glossary), method: :post, html: {data: {type: "json"}, id: "definition_add"} do |f| %>
+    <table class="glossary_terms">
+      <tr class="add">
+        <td class="wyl"> <%= f.text_field :wyl %></td>
+        <td class="entry"><%= f.text_field :entry %></td>
+        <td class="entry"><%= f.submit 'Submit' %></td>
+      </tr>
+    </table>
+  <% end %>
+
   <%= will_paginate @definitions %>
 </div>
+
+<script type="text/x-template" id="definition-row">
+  <tr class="glossary_term">
+    <td><a href="TIB_TERM_PATH">WYL</a></td>
+    <td>ENTRY</td>
+    <td><a class="edit" href="EDIT_DEFINITION_PATH">edit</a></td>
+  </tr>
+</script>
+
+<script>
+  $(document).ready(function () {
+    GlossaryApp.initialize();
+  })
+</script>
