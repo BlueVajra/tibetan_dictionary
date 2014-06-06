@@ -13,11 +13,9 @@ class TibTerm < ActiveRecord::Base
   end
 
   def definitions_for_user(user)
-    all_records = definitions.includes(:glossary)
-    all_records.select do |definition|
-      definition.glossary.private == false || definition.glossary.user == user
-    end
+    definitions.joins(:glossary).where(['"glossaries"."user_id" = ? or "glossaries"."private" is false', user.id])
   end
+
 
 
 

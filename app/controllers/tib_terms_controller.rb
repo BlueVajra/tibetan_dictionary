@@ -48,11 +48,15 @@ class TibTermsController < ApplicationController
   #  end
   #end
 
+
+  #SELECT "glossaries"."name", "definitions"."entry" FROM "glossaries","definitions" WHERE "definitions"."tib_term_id" = 1 AND "definitions"."glossary_id" = "glossaries"."id" and ("glossaries"."user_id" = 4 or "glossaries"."private" is false) ORDER BY "glossaries"."id";
   def show
     @term = TibTerm.find(params[:id])
-    filtered_definitions = @term.definitions_for_user(current_user)
-    unique_glossaries = glossaries_for(filtered_definitions)
-    @glossaries = sort_definitions(filtered_definitions, unique_glossaries)
+    #filtered_definitions = @term.definitions_for_user(current_user)
+    #unique_glossaries = glossaries_for(filtered_definitions)
+    #@glossaries = sort_definitions(filtered_definitions, unique_glossaries)
+
+    @glossaries = Glossary.joins(:definitions).where(['"definitions"."tib_term_id"= ? and ("glossaries"."user_id" = ? or "glossaries"."private" is false)', @term.id, current_user.id]).order('"glossaries"."id"')
     begin
       @dd = dharma_dictionary(@term.wyl)
     rescue

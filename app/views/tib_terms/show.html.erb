@@ -2,8 +2,8 @@
 <div class="definitions">
   <dl>
     <% @glossaries.each do |glossary| %>
-      <dt><%= link_to glossary[0].name, glossary_path(glossary[0]), alt: glossary[0].description %></dt>
-      <% glossary[1].each do |definition| %>
+      <dt><%= link_to glossary.name, glossary_path(glossary), alt: glossary.description %></dt>
+      <% glossary.definitions.each do |definition| %>
         <dd><%= simple_format(add_links(definition.entry)) %></dd>
       <% end %>
     <% end %>
