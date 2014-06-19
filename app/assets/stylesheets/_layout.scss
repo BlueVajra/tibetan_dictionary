@@ -105,6 +105,9 @@ footer {
     }
   }
   @include media($large-screen) {
+
+  }
+  @media (min-width: 860px) {
     @include span-columns(4);
   }
 }

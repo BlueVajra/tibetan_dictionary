@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :glossaries do
-    resources :definitions, only: :create
+    resources :definitions, only: [:create, :edit, :update]
   end
+
+  get '/glossaries_test', to: 'glossaries#index_test'
+  get '/glossaries_test/:id', to: 'glossaries#show_test'
 
   put '/glossaries/:id/default', to: 'glossaries#default', as: :default_glossary
 
