@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'wylie'
+
+# from command line in tibetan dictionary dir
+# bundle exec gems/wylie/bin/wylie "dam pa'i chos"
+
+# puts STDIN.read
+
+puts
+puts "Translating: #{ARGV[0]}"
+puts
+puts Wylie::Converter.new.tibetan(ARGV[0])
+puts

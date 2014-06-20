@@ -29,11 +29,11 @@ module FeatureHelpers
     sign_up_user
     user1 = User.find_by(email:"bob@bob.com")
     gloss = Glossary.create!(name: "Test", description: "Description Here", user_id: user1.id)
-    term1 = TibTerm.create!(wyl: "Test1")
-    term2 = TibTerm.create!(wyl: "Test2")
+    term1 = TibTerm.create!(wyl: "dam")
+    term2 = TibTerm.create!(wyl: "chos")
 
     Definition.create!(
-      entry: %q{ Test link {Test2} },
+      entry: %q{ Test link {chos} },
       tib_term_id: term1.id,
       glossary_id: gloss.id
     )
