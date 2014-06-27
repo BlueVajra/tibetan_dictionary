@@ -1,4 +1,4 @@
-table.glossary_terms, table.glossary_list {
+table.glossary_terms, table.glossary_terms_add, table.glossary_list {
   border-collapse: collapse;
 
   table-layout: auto;
@@ -39,11 +39,10 @@ form#definition_add{
   padding:.25em .5em;
   border:2px solid lightseagreen;
   border-radius:5px;
+  margin-top:1em;
 }
-table.glossary_terms.add{
+table.glossary_terms_add{
   margin: 0;
-
-
   tr.add{
 
     td{
@@ -72,6 +71,9 @@ table.glossary_terms.add{
         border:0;
         padding:0;
         input{
+          margin-bottom:0;
+        }
+        textarea{
           margin-bottom:0;
         }
       }

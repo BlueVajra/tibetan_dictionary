@@ -8,7 +8,7 @@
   </div>
 
   <%= form_for :tib_definition, remote: true, url: glossary_definitions_path(@glossary), method: :post, html: {data: {type: "json"}, id: "definition_add"} do |f| %>
-    <table class="glossary_terms add">
+    <table class="glossary_terms_add">
       <tr class="add">
         <td class="wyl"><%= f.text_field :wyl, {placeholder: "Wylie Term"} %></td>
         <td class="entry"><%= f.text_field :entry, {placeholder: "Definition Entry"} %></td>
@@ -32,35 +32,6 @@
   <%= will_paginate @definitions %>
 </div>
 
-<script type="text/x-template" id="definition-row">
-  <tr class="glossary_term" data-definition-id="DEFINITION_ID">
-    <td class="wyl"><a href="TIB_TERM_PATH">WYL</a></td>
-    <td class="entry">ENTRY</td>
-    <td class="button"><a class="edit" href="DEFINITION_PATH">edit</a></td>
-  </tr>
-</script>
-
-<script type="text/x-template" id="definition-row-edit">
-<tr class="edit_row glossary_edit"><td colspan="3">
-
-<form accept-charset="UTF-8" action="DEFINITION_PATH" data-remote="true" data-type="json" class="definition_edit" id="DEFINITION_ID" method="post">
-<table class="">
-  <tr class="edit_row">
-    <td class="wyl">WYL</td>
-    <td class="entry">
-
-      <div style="display:none"><input name="_method" type="hidden" value="patch" /></div>
-      <input name="definition[entry]" type="text" value="ENTRY" />
-
-    </td>
-    <td class="button"><input name="commit" type="submit" value="✓" form="DEFINITION_ID" /></td>
-  </tr>
-  </table>
-  </form>
-
-  </td>
-</tr>
-</script>
 
 <script>
   $(document).ready(function () {

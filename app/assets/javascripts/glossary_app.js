@@ -7,6 +7,7 @@ window.GlossaryApp = {
       this.initialized = true;
       $(document).on("ajax:success", "#definition_add", this.formWasSubmitted.bind(this));
       $(document).on("click", ".edit", this.editLinkWasClicked.bind(this));
+      $(document).on("click", ".cancel", this.cancelLinkWasClicked.bind(this));
       $(document).on("ajax:success", ".definition_edit", this.editFormWasSubmitted.bind(this));
     }
   },
@@ -21,15 +22,28 @@ window.GlossaryApp = {
   },
 
   editFormWasSubmitted: function (event, json) {
+    console.log('got here')
     var $showRow = $(".glossary_term[data-definition-id=" + json.definition_id + "]");
 
-    var renderedTemplate = this.renderTemplate("#definition-row", json);
-
-
+    renderedTemplate = JST['templates/term']({term: json});
+    $showRow.before(renderedTemplate);
     $(event.target).closest(".edit_row").remove();
+    $showRow.remove();
+  },
+
+  cancelLinkWasClicked: function (event){
+    var $editRow = $(event.target).closest(".glossary_edit")
+    var id = $editRow.find('form').attr('id')
+    var $oldRow = $(".glossary_term[data-definition-id=" + id + "]");
+    $editRow.remove();
+    $oldRow.show();
+
+    event.preventDefault();
+    return false;
   },
 
   editLinkWasClicked: function (event) {
+
     var $row = $(event.target).closest(".glossary_term");
     var $href = $(event.target).attr('href')
     var $definition_id = $href.match(/\d*?$/)
@@ -40,18 +54,11 @@ window.GlossaryApp = {
       definition_id: $definition_id,
     };
 
-    var renderedTemplate = this.renderTemplate("#definition-row-edit", json);
+    renderedTemplate = JST['templates/term_edit']({term: json});
     $row.before(renderedTemplate).hide();
 
     return false;
-  },
-
-  renderTemplate: function (templateName, object) {
-    var template = $(templateName).html();
-    $.each(object, function (key, value) {
-      upKey = new RegExp(key.toUpperCase(), 'g');
-      template = template.replace(upKey, value);
-    });
-    return template;
   }
+
+
 };

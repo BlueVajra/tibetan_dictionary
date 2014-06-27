@@ -1,0 +1,19 @@
+<tr class="edit_row glossary_edit"><td colspan="3">
+
+    <form accept-charset="UTF-8" action="<%= term.definition_path %>" data-remote="true" data-type="json" class="definition_edit" id="<%= term.definition_id %>" method="post">
+      <div style="display:none"><input name="_method" type="hidden" value="patch" /></div>
+      <table class="">
+        <tr class="edit_row">
+          <td class="wyl">
+            <input name="definition[wyl]" type="text" value="<%= term.wyl %>" />
+          </td>
+          <td class="entry">
+            <textarea name="definition[entry]" type="text"><%= term.entry %></textarea>
+          </td>
+          <td class="button"><input name="commit" type="submit" value="✓" form="<%= term.definition_id %>" /><a href="#" class="cancel">Cancel</a></td>
+        </tr>
+      </table>
+    </form>
+
+  </td>
+</tr>

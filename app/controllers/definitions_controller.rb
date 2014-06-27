@@ -69,7 +69,7 @@ class DefinitionsController < ApplicationController
         @term = TibTerm.find(params[:tib_term_id])
         @definition = Definition.find(params[:id])
         @definition.entry = params[:definition][:entry]
-
+        @definition.e
         if @definition.save
           redirect_to glossary_path(@definition.glossary)
         else
@@ -77,7 +77,9 @@ class DefinitionsController < ApplicationController
         end
       end
       format.json do
+        @term = TibTerm.find_or_create_by(wyl: remove_punctuation(params[:definition][:wyl]))
         @definition = Definition.find(params[:id])
+        @definition.tib_term_id = @term.id
         @definition.entry = params[:definition][:entry]
         if @definition.save
           json = {
