@@ -1,14 +1,18 @@
 module ApplicationHelper
+
   def is_active(action)
     "active" if params[:action] == action
   end
 
   def add_links(definition)
-    # match the terms that are in { }
-    # substitute the {} for links
-      # links have search query for the text in the links
-
-    the_match = definition.gsub(/\{(.*?)\}/, "<a href='/tib_terms?search=\\1'>\\1</a>")
-
+    if definition.match(/\{(.*?)\}/)
+      the_strings = definition.match(/\{(.*?)\}/)[1].split(",")
+      array_of_tibetan = the_strings.map do |string|
+        "<a href='/tib_terms?search=#{string}'>#{to_tibetan(string)}</a>"
+      end
+      definition.gsub(/\{(.*?)\}/, array_of_tibetan.join(","))
+    else
+      definition
+    end
   end
 end

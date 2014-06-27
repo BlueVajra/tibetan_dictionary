@@ -19,11 +19,11 @@ feature "Search terms and see definitions" do
 
     visit '/'
     click_on 'Dictionary'
-    click_on "Test1"
+    click_on "dam"
     expect(page).to have_content "Test link"
-    click_on "Test2"
+    click_on "ཆོས་"
     within(".terms") do
-      click_link "Test2"
+      click_link "chos"
     end
     expect(page).to have_content "Link to Here"
   end

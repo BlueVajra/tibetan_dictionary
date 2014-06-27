@@ -37,6 +37,8 @@ gem 'faraday', '~> 0.9.0'
 gem 'ejs', '~> 1.1.1'
 
 
+gem "wylie", path: "gems/wylie"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
