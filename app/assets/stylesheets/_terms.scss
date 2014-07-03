@@ -13,9 +13,9 @@ h4.search_results, h4.exact_match{
 
 .definitions{
 
-  @include media ($large-screen) {
-    @include span-columns(8);
-  }
+//  @include media ($large-screen) {
+//    @include span-columns(8);
+//  }
 
   dt{
     display:block;
@@ -56,13 +56,13 @@ h4.search_results, h4.exact_match{
 }
 
 .add_definition{
-  @include media ($large-screen) {
-    @include span-columns(4);
-  }
-  border:1px solid steelblue;
-  padding:1em;
-  border-radius:5px;
-  background-color:lightsteelblue;
+//  @include media ($large-screen) {
+//    @include span-columns(4);
+//  }
+//  border:1px solid steelblue;
+//  padding:1em;
+//  border-radius:5px;
+//  background-color:lightsteelblue;
   textarea{
     height:8em;
   }

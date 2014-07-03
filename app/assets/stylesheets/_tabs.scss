@@ -1,0 +1,30 @@
+#tabs {
+  margin-top:1em;
+  ul {
+    margin-left: 1em;
+  }
+}
+
+#tabs ul li {
+  display: inline-block;
+  a {
+    padding: .4em .8em;
+    border: 1px solid steelblue;
+    background-color: darken(lightsteelblue, 10%);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px
+  }
+  a.active {
+    border-bottom: 1px solid steelblue;
+    background-color: lightsteelblue;
+  }
+}
+
+#tabs_container {
+  margin-top: 2px;
+  border: 1px solid steelblue;
+  padding: 1em;
+  border-radius: 5px;
+  background-color: lightsteelblue;
+}
+

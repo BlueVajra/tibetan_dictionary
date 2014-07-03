@@ -18,7 +18,7 @@ feature "Manage Terms" do
   end
   scenario "user can add definitions to terms" do
     click_link 'bod'
-
+    click_link 'Add Definition'
     fill_in 'definition[entry]', with: 'Tibet'
     click_button 'Submit'
     expect(page).to have_content 'Tibet'

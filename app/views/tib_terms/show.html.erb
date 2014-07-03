@@ -8,36 +8,60 @@
       <% end %>
     <% end %>
   </dl>
-  <hr/>
-  <h3>Dharma Dictionary</h3>
-  <p class="info">These are the current entries in the <a href="http://rywiki.tsadra.org/" target="_blank">Dharma Dictionary</a>, a wiki format of the same dictionaries.</p>
-  <div class="dd"><%= simple_format(@dd) %></div>
+
+</div>
+<div id="tabs">
+  <ul>
+    <li><a href="#comments">Comments</a></li>
+    <li><a href="#add_definitions">Add Definition</a></li>
+    <li><a href="#dharma_dictionary">Dharma Dictionary</a></li>
+  </ul>
+  <div id="tabs_container">
+    <div id="comments" class="tab_container">
+      COMMENTS HERE
+    </div>
+    <div id="add_definitions" class="tab_container add_definition">
+      <h4>Add a Definition</h4>
+      <% if user_signed_in? %>
+
+        <% if @definition.errors.any? %>
+          <div class="errors">
+            <ul>
+              <% @definition.errors.full_messages.each do |msg| %>
+                <li class="error"><span><%= msg %></span></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form_for [@term, @definition], url: tib_term_definitions_path(@term), method: "post" do |f| %>
+          <%= f.label "Glossary" %>
+          <%= f.collection_select :glossary_id, current_user.glossaries, :id, :name, {:selected => current_user.default_glossary} %>
+          <%= f.label :entry %>
+          <%= f.text_area :entry %>
+          <%= f.submit "Submit" %>
+        <% end %>
+
+      <% else %>
+        <p>Please register or login to add a definition.</p>
+
+      <% end %>
+    </div>
+    <div id="dharma_dictionary" class="tab_container">
+      <h3>Dharma Dictionary</h3>
+
+      <p class="info">These are the current entries in the
+        <a href="http://rywiki.tsadra.org/" target="_blank">Dharma Dictionary</a>, a wiki format of the same
+        dictionaries.
+      </p>
+
+      <div class="dd"><%= simple_format(@dd) %></div>
+    </div>
+  </div>
 </div>
 
-<div class="add_definition">
-  <h4>Add a Definition</h4>
-  <% if user_signed_in? %>
-
-    <% if @definition.errors.any? %>
-      <div class="errors">
-        <ul>
-          <% @definition.errors.full_messages.each do |msg| %>
-            <li class="error"><span><%= msg %></span></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <%= form_for [@term, @definition], url: tib_term_definitions_path(@term), method: "post" do |f| %>
-      <%= f.label "Glossary" %>
-      <%= f.collection_select :glossary_id, current_user.glossaries, :id, :name, {:selected => current_user.default_glossary} %>
-      <%= f.label :entry %>
-      <%= f.text_area :entry %>
-      <%= f.submit "Submit" %>
-    <% end %>
-
-  <% else %>
-    <p>Please register or login to add a definition.</p>
-
-  <% end %>
-</div>
+<script>
+  $(document).ready(function () {
+    Tabs.initialize();
+  })
+</script>
