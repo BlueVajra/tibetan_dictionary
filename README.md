@@ -20,10 +20,13 @@ Often, these amazing insights are now lost in a pile of notebooks, handwritten a
 
 ##Dreams and Goals - current todo list
 
-1. search the Rangjung Yeshe Dictionary
-1. add entries to personal dictionary for searching
-1. share dictionaries with others
-1. comment on entries / group discussion
+1. ~~search the Rangjung Yeshe Dictionary~~
+1. ~~add entries to personal dictionary for searching~~
+1. ~~comment on entries / group discussion~~
+1. share private dictionaries with others
+1. create pdf of personal glossaries
+1. import csv glossaries
+1. add book glossaries
 
 ## Links
 
