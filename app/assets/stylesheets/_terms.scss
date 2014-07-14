@@ -109,3 +109,39 @@ h4.search_results, h4.exact_match{
   }
 
 }
+
+#add_comment{
+  h4{
+    margin-bottom:.5em;
+  }
+  label{
+    float:left;
+    width:5em;
+    display:block;
+  }
+  .comment_entry{
+
+    input, textarea{
+      display:block;
+      padding:.3em;
+    }
+
+  }
+
+}
+#comments{
+  .comment{
+    margin-top:1em;
+    h4{
+      font-size:1em;
+      background-color:steelblue;
+      color:white;
+      padding:.3em .5em;
+    }
+  }
+  .comment_body{
+    padding:.5em;
+    background-color:rgba(255,255,255,.4);
+    border:1px solid steelblue;
+  }
+}

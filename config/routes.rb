@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :tib_terms do
     resources :definitions
+    resources :comments
   end
 
   resources :glossaries do
