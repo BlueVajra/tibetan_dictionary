@@ -15,7 +15,9 @@ feature "Search terms and see definitions" do
   end
 
   scenario "user clicks on a term in a definition" do
-    create_definitions
+    user = create_user("bob@bob.com")
+    glossary = create_public_glossary(user)
+    create_bulk_definitions_for(glossary)
 
     visit '/'
     click_on 'Dictionary'
@@ -27,4 +29,5 @@ feature "Search terms and see definitions" do
     end
     expect(page).to have_content "Link to Here"
   end
+
 end

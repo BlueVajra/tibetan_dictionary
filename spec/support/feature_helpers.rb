@@ -1,18 +1,18 @@
 module FeatureHelpers
-  def sign_up_user
+  def sign_up_user(email)
     visit '/'
     click_link 'Sign up'
-    fill_in 'user[email]', with: "bob@bob.com"
+    fill_in 'user[email]', with: email
     fill_in 'user[password]', with: "12341234"
     fill_in 'user[password_confirmation]', with: "12341234"
     click_button 'Sign up'
   end
 
-  def sign_in_user
+  def sign_in_user(user)
     visit '/'
     click_link 'Sign in'
-    fill_in 'user[email]', with: "bob@bob.com"
-    fill_in 'user[password]', with: "12341234"
+    fill_in 'user[email]', with: user.email
+    fill_in 'user[password]', with: "password1"
     click_button 'Sign in'
   end
 
@@ -25,63 +25,20 @@ module FeatureHelpers
     TibTerm.create!(wyl: "mi")
   end
 
-  def create_definitions
-    sign_up_user
-    user1 = User.find_by(email:"bob@bob.com")
-    gloss = Glossary.create!(name: "Test", description: "Description Here", user_id: user1.id)
+  def create_bulk_definitions_for(glossary)
     term1 = TibTerm.create!(wyl: "dam")
     term2 = TibTerm.create!(wyl: "chos")
 
     Definition.create!(
       entry: %q{Test link {chos}},
       tib_term_id: term1.id,
-      glossary_id: gloss.id
+      glossary_id: glossary.id
     )
     Definition.create!(
       entry: "Link to Here",
       tib_term_id: term2.id,
-      glossary_id: gloss.id
+      glossary_id: glossary.id
     )
-
   end
 
-  def create_private_definitions
-    sign_up_user
-    user1 = User.find_by(email:"bob@bob.com")
-    user2 = User.create!(email:"joe@joe.com", password: "12341234")
-    gloss = Glossary.create!(name: "Glossary Test 1", description: "Description Here", user_id: user1.id)
-    gloss1 = Glossary.create!(name: "Glossary Test 2", description: "Another Description Here", user_id: user1.id)
-    gloss2 = Glossary.create!(name: "Glossary Private Test 3", description: "Description Here", user_id: user2.id, private: true)
-
-    term1 = TibTerm.create!(wyl: "Test1")
-    term2 = TibTerm.create!(wyl: "Test2")
-    term3 = TibTerm.create!(wyl: "Test3")
-
-    Definition.create!(
-      entry: "Entry 1 for Test1",
-      tib_term_id: term1.id,
-      glossary_id: gloss.id
-    )
-    Definition.create!(
-      entry: "Entry 2 for Test1",
-      tib_term_id: term1.id,
-      glossary_id: gloss.id
-    )
-    Definition.create!(
-      entry: "Entry 1 for Test2",
-      tib_term_id: term2.id,
-      glossary_id: gloss.id
-    )
-    Definition.create!(
-      entry: "Entry 2 for Test3",
-      tib_term_id: term3.id,
-      glossary_id: gloss.id
-    )
-    Definition.create!(
-      entry: "Entry 3 for Glossary 2",
-      tib_term_id: term1.id,
-      glossary_id: gloss2.id
-    )
-
-  end
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Manage Authentication" do
   context "User is signed in" do
     before :each do
-      sign_up_user
+      sign_up_user("bob@bob.com")
     end
     scenario "a guest can't see glossaries created by other people" do
       click_on "My Glossaries"
@@ -22,7 +22,7 @@ feature "Manage Authentication" do
       click_on "My Glossaries"
       expect(page).to_not have_content "A Glossary Name"
     end
-    scenario "a guest can't create Glossairies" do
+    scenario "a guest can't create Glossaries" do
       click_link 'Sign out'
       visit glossaries_path
       expect(page).to have_content "You need to sign in or sign up before continuing."
