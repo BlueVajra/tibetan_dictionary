@@ -120,7 +120,8 @@ feature "Managing glossaries" do
     click_on 'My Glossaries'
     click_on "Test"
     click_on "Download CSV"
-    expect(page.source).to eql(<<-CSV)
+
+    expect(page.source).to eq(<<-CSV)
 Term,Entry
 dam,Test link {chos}
 chos,Link to Here

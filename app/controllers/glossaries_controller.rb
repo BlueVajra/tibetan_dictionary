@@ -29,7 +29,7 @@ class GlossariesController < ApplicationController
         @definitions = @glossary.definitions.paginate(:page => params[:page], :per_page => 30)
       end
       format.csv do
-        send_data @glossary.to_csv
+        send_data @glossary.to_csv, filename:"#{@glossary.name}.csv"
       end
     end
   end
