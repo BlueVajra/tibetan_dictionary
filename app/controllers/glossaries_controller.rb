@@ -20,12 +20,18 @@ class GlossariesController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
     @glossary = Glossary.find(params[:id])
-    @definitions = @glossary.definitions.paginate(:page => params[:page], :per_page => 30)
+    respond_to do |format|
+      format.html do
+        @definitions = @glossary.definitions.paginate(:page => params[:page], :per_page => 30)
+      end
+      format.csv do
+        send_data @glossary.to_csv
+      end
+    end
   end
 
   def edit

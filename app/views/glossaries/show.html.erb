@@ -4,6 +4,7 @@
   <h3><%= @glossary.description %></h3>
 
   <div class="controls">
+    <%= link_to "Download CSV", glossary_path(@glossary, format: "csv"), class: "button" %>
     <%= link_to "Edit Glossary", edit_glossary_path(@glossary), class: "button" %>
   </div>
 

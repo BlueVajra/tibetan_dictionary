@@ -14,7 +14,6 @@ feature "Managing glossaries" do
 
   scenario "user can create a glossary" do
     create_definitions
-    #sign_in_user
 
     click_on "My Glossaries"
     click_on "Add New Glossary"
@@ -29,7 +28,6 @@ feature "Managing glossaries" do
 
   scenario "User cannot see entries for private glossaries" do
     create_private_definitions
-    #sign_in_user
 
     click_on "Dictionary"
     click_on "Test1"
@@ -40,7 +38,6 @@ feature "Managing glossaries" do
 
   scenario "user can edit a glossary they created" do
     create_definitions
-    #sign_in_user
 
     click_on "My Glossaries"
     click_on "Test"
@@ -64,10 +61,6 @@ feature "Managing glossaries" do
 
     expect(page).to have_content("bob@bob.com's Public Glossary")
     expect(page).to have_content("Some entry")
-
-    # user selects other glossary
-    # user adds new definition
-    #expect definition to appear in different glossary
   end
 
   scenario "a user can see if glossary is default and change default to another" do
@@ -82,7 +75,6 @@ feature "Managing glossaries" do
     expect(find("table.glossary_list tr:nth-child(3)")).to have_content "default"
   end
 
-
   scenario "a user can change the glossary they want to add a definition to on the term page" do
     @term = TibTerm.create!(wyl: "My term")
     create_private_definitions
@@ -96,10 +88,11 @@ feature "Managing glossaries" do
     expect(page).to have_content("Test 2")
     expect(page).to have_content("Some entry")
   end
+
   scenario "user can edit definitions from their glossary", js: true do
     create_private_definitions
     click_on 'My Glossaries'
-    click_on "Test"
+    click_on "Glossary Test 1"
 
     within("table.glossary_terms tr:nth-child(1)") do
       click_on "edit"
@@ -112,7 +105,7 @@ feature "Managing glossaries" do
   scenario "user can cancel editing from their glossary", js: true do
     create_private_definitions
     click_on 'My Glossaries'
-    click_on "Test"
+    click_on "Glossary Test 1"
 
     within("table.glossary_terms tr:nth-child(1)") do
       click_on "edit"
@@ -120,6 +113,19 @@ feature "Managing glossaries" do
     fill_in 'definition[entry]', with: "New and Improved"
     click_on "Cancel"
     expect(page).to_not have_content "New and Improved"
+  end
+
+  scenario "user can download a csv of a glossary" do
+    create_definitions
+    click_on 'My Glossaries'
+    click_on "Test"
+    click_on "Download CSV"
+    expect(page.source).to eql(<<-CSV)
+Term,Entry
+dam,Test link {chos}
+chos,Link to Here
+    CSV
+
   end
 
 end

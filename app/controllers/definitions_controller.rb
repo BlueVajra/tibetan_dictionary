@@ -63,7 +63,6 @@ class DefinitionsController < ApplicationController
   end
 
   def update
-    puts "HELLOOOOOOO"
     respond_to do |format|
       format.html do
         @term = TibTerm.find(params[:tib_term_id])
