@@ -30,11 +30,16 @@ end
 group :production do
   gem 'rails_12factor', '~> 0.0.2'
 end
+
 gem 'nav_lynx', '~> 1.1.0'
 
 gem 'devise', '~> 3.2.4'
 gem 'will_paginate', '~> 3.0'
 gem 'faraday', '~> 0.9.0'
 gem 'ejs', '~> 1.1.1'
+
+gem 'wkhtmltopdf-binary', '~> 0.9.9.3'
+gem 'wicked_pdf', '~> 0.11.0'
+gem 'pdf-reader', '~> 1.3.3'
 
 gem "wylie", path: "gems/wylie"

@@ -1,0 +1,23 @@
+body{
+  font-family: Helvetica, Arial, Sans-serif;
+}
+table {
+  width: 100%;
+  margin:0;
+  padding:0;
+  border:none;
+  border-collapse:collapse;
+  border-spacing:0;
+  tr{
+    border-bottom: 1px solid lightgray;
+  }
+  th{
+    text-align:left;
+  }
+  td {
+    padding: .4em 1em .4em 0;
+  }
+  td:nth-child(1){
+    width:30%;
+  }
+}

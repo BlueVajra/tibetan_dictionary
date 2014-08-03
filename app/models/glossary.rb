@@ -7,11 +7,11 @@ class Glossary < ActiveRecord::Base
 
   def to_csv
     CSV.generate do |csv|
-        csv_names = ["Term", "Entry"]
-        csv << csv_names
-        definitions.each do |definition|
-          csv << [definition.tib_term.wyl, definition.entry]
-        end
+      csv_names = ["Term", "Entry"]
+      csv << csv_names
+      definitions.each do |definition|
+        csv << [definition.tib_term.wyl, definition.entry]
       end
+    end
   end
 end

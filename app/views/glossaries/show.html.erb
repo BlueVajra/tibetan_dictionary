@@ -5,6 +5,7 @@
 
   <div class="controls">
     <%= link_to "Download CSV", glossary_path(@glossary, format: "csv"), class: "button" %>
+    <%= link_to "Download PDF", glossary_path(@glossary, format: "pdf"), class: "button" %>
     <%= link_to "Edit Glossary", edit_glossary_path(@glossary), class: "button" %>
   </div>
 
@@ -27,8 +28,6 @@
       </tr>
     <% end %>
   </table>
-
-
 
   <%= will_paginate @definitions %>
 </div>

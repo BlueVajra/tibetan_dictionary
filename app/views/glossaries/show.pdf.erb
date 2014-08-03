@@ -1,0 +1,15 @@
+<h1><%= @glossary.name %></h1>
+<h2><%= @glossary.description %></h2>
+
+<table class="glossary_terms">
+  <tr>
+    <th>Term</th>
+    <th>Entry</th>
+  </tr>
+  <% @glossary.definitions.each do |definition| %>
+    <tr class="glossary_term">
+      <td class="wyl"><%= definition.tib_term.wyl %></td>
+      <td class="entry"><%= definition.entry %></td>
+    </tr>
+  <% end %>
+</table>

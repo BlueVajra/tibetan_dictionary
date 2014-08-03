@@ -92,4 +92,21 @@ chos,Link to Here
     CSV
   end
 
+  scenario "user can download a pdf of a glossary" do
+    user = create_user("bob@bob.com")
+    sign_in_user(user)
+
+    glossary = create_public_glossary(user)
+    create_bulk_definitions_for(glossary)
+
+    click_on 'My Glossaries'
+    click_on glossary.name
+    click_on "Download PDF"
+
+    convert_pdf_to_page
+
+    expect(page).to have_content "dam"
+    expect(page).to have_content "chos"
+  end
+
 end
