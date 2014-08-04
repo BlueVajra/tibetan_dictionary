@@ -36,3 +36,12 @@ Often, these amazing insights are now lost in a pile of notebooks, handwritten a
 
 - https://travis-ci.org/BlueVajra/tibetan_dictionary
 
+## Set up local machine
+
+1. fork and clone
+2. `bundle`
+3. `rake db:create db:migrate`
+  1. there will be no dictionaries, but you can add your own in the db/dictionaries folder and change the seed file.
+4. `rails s`
+
+Please let me know if this doesn't work!
