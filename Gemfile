@@ -41,6 +41,6 @@ gem 'wkhtmltopdf-binary', '~> 0.9.9.3'
 gem 'wicked_pdf', '~> 0.11.0'
 gem 'pdf-reader', '~> 1.3.3'
 
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '~> 3.9.1.236'
 
 gem "wylie", path: "gems/wylie"
