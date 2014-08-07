@@ -13,10 +13,6 @@ h4.search_results, h4.exact_match{
 
 .definitions{
 
-//  @include media ($large-screen) {
-//    @include span-columns(8);
-//  }
-
   dt{
     display:block;
     margin:0;
@@ -56,13 +52,6 @@ h4.search_results, h4.exact_match{
 }
 
 .add_definition{
-//  @include media ($large-screen) {
-//    @include span-columns(4);
-//  }
-//  border:1px solid steelblue;
-//  padding:1em;
-//  border-radius:5px;
-//  background-color:lightsteelblue;
   textarea{
     height:8em;
   }
@@ -131,17 +120,20 @@ h4.search_results, h4.exact_match{
 }
 #comments{
   .comment{
-    margin-top:1em;
+    margin-top:.4em;
     h4{
       font-size:1em;
       background-color:steelblue;
       color:white;
-      padding:.3em .5em;
+      padding:.2em .4em;
     }
   }
   .comment_body{
-    padding:.5em;
-    background-color:rgba(255,255,255,.4);
+    padding:.2em .4em;
+    background-color:rgba(255,255,255,.2);
     border:1px solid steelblue;
+    p{
+      margin:0;
+    }
   }
 }

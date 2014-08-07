@@ -17,7 +17,7 @@ window.Tabs = {
   },
 
   tabLinkWasClicked: function (e) {
-    console.log($active)
+    console.log($active);
     $active.removeClass('active');
     $container.hide();
 

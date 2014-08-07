@@ -1,7 +1,17 @@
+.definitions {
+  @include media($large-screen) {
+    @include span-columns(6);
+  }
+}
+
 #tabs {
-  margin-top:1em;
+  @include media($large-screen) {
+    @include span-columns(6);
+    @include omega;
+  }
+  margin-top: 1em;
   ul {
-    margin-left: 1em;
+//    margin-left: 1em;
   }
 }
 
@@ -15,16 +25,17 @@
     border-top-right-radius: 5px
   }
   a.active {
-    border-bottom: 1px solid steelblue;
-    background-color: lightsteelblue;
+    border-bottom: 1px solid lightsteelblue;
+    background-color: $comments_section;
   }
 }
 
 #tabs_container {
-  margin-top: 2px;
+  margin-top: 3px;
   border: 1px solid steelblue;
   padding: 1em;
   border-radius: 5px;
-  background-color: lightsteelblue;
+  border-top-left-radius:0;
+  background-color: $comments_section;
 }
 
