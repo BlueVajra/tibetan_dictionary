@@ -41,7 +41,27 @@ Often, these amazing insights are now lost in a pile of notebooks, handwritten a
 1. fork and clone
 2. `bundle`
 3. `rake db:create db:migrate`
-  1. there will be no dictionaries, but you can add your own in the db/dictionaries folder and change the seed file.
+1. Before you seed the database
+  1. You will need to create a User (via console or the app running at local host)
+  1. There is a shortened version of the Rangjung Yeshe dictionary that you can seed. You can add more dictionaries in the `db/dictionaries/` folder.
+  1. Add dictionaries that are in the specified format (see below) 
+  1. they should be named with the `name.txt` format
+  1. change line #5 in the seed.rb file to false if you add your own dictionaries
+1. `rake db:seed`
 4. `rails s`
+
+### Dictionary format
+
+When you seed dictionaries, they need to be in the following format (you can import other types via the app)
+
+```
+kar ma pa - 1st dus gsum mkhyen pa, 1110-1193 [tsd]
+ka rtsam - species of wild oats [ry]
+```
+
+`term - definition [glossary name]`
+
+You can edit the names of the glossaries as well as the term and definition in the app using the admin you created
+
 
 Please let me know if this doesn't work!

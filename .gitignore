@@ -17,4 +17,6 @@
 
 #Ignore text_dictionaries for large seeding
 
-/db/dictionaries
+/db/dictionaries/JimValby2002.txt
+/db/dictionaries/RichardBarron.txt
+/db/dictionaries/ry-dic2003-prop.txt
