@@ -14,4 +14,22 @@ class Glossary < ActiveRecord::Base
       end
     end
   end
+
+  def create_definitions_from_csv(file)
+    Glossary.transaction do
+      CSV.open(file.path, headers: true) do |csv_file|
+        rows = csv_file.each
+        headers = csv_file.first.headers
+        if headers.include?("Term") && headers.include?("Definition")
+          rows.rewind
+          rows.each do |row|
+            term = TibTerm.find_or_create_by(wyl: row["Term"].strip)
+            term.definitions.create(entry: row["Definition"].strip, glossary: self)
+          end
+        else
+          raise "Malformed header row"
+        end
+      end
+    end
+  end
 end

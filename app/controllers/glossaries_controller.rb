@@ -57,6 +57,26 @@ class GlossariesController < ApplicationController
     end
   end
 
+  def import_form
+
+  end
+
+  def import
+    glossary = Glossary.find(params[:id])
+    error = ""
+    begin
+      glossary.create_definitions_from_csv(params[:file])
+    rescue RuntimeError => e
+      error = e
+    end
+    if !error.blank?
+      flash.now[:error] = "There was an error with the import.\n#{error.message}\nPlease fix the problem and try again."
+      render :import_form
+    else
+      redirect_to glossary_path(glossary), notice: "Your records have been successfully imported"
+    end
+  end
+
   def default
     current_user.default_glossary = params[:id]
     current_user.save

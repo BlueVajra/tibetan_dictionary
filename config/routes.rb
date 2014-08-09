@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   resources :glossaries do
     resources :definitions, only: [:create, :edit, :update]
+    member do
+      get :import, to: "glossaries#import_form"
+      post :import, to: "glossaries#import"
+    end
   end
 
   get '/glossaries_test', to: 'glossaries#index_test'

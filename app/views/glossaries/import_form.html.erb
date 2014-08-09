@@ -1,0 +1,13 @@
+<h2>CSV File Upload</h2>
+<h3>Please import a csv file below.</h3>
+
+<div class="instructions">
+  <h4>Please Note:</h4>
+  <p>Your CSV file must have the proper headers for uploading. <code>Term,Definition</code> must be the first row. Notice there are no spaces. <code>"Term","Definition"</code> is also an acceptable first line, since csv files allow for values to be wrapped in quotes.</p>
+</div>
+
+<%= form_tag import_glossary_path, multipart: true, class: "import_form" do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Submit" %>
+<% end %>
+

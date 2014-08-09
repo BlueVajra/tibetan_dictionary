@@ -1,0 +1,16 @@
+.instructions {
+  padding: .5em;
+  background-color: lightgray;
+  @include media($large-screen) {
+    float: right;
+    width: 50%;
+  }
+  code{
+    background-color:rgba(255,255,255,.4);
+    padding:.1em;
+  }
+}
+
+.import_form{
+  margin-top:1em;
+}
