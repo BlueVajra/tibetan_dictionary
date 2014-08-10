@@ -1,5 +1,8 @@
 <tr class="glossary_term" data-definition-id="<%= term.definition_id %>">
   <td class="wyl"><a href="<%= term.tib_term_path %>"><%= term.wyl %></a></td>
   <td class="entry"><%= term.entry %></td>
-  <td class="button"><a class="edit" href="<%= term.definition_path %>">edit</a></td>
+  <td class="button">
+    <a class="edit" href="<%= term.definition_path %>">edit</a>
+    <a class="delete" data-confirm="Are you sure?" data-method="delete" href="<%= term.glossary_definition_path %>" rel="nofollow">delete</a>
+  </td>
 </tr>

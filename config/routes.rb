@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :glossaries do
-    resources :definitions, only: [:create, :edit, :update]
+    resources :definitions, only: [:create, :edit, :update, :destroy]
     member do
       get :import, to: "glossaries#import_form"
       post :import, to: "glossaries#import"

@@ -1,5 +1,5 @@
 class DefinitionsController < ApplicationController
-  before_action :authenticate_user!, :only => [:create]
+  before_action :authenticate_user!
   respond_to :html, :js
 
   def create
@@ -28,6 +28,7 @@ class DefinitionsController < ApplicationController
             entry: @definition.entry,
             tib_term_path: tib_term_path(@definition.tib_term),
             definition_path: tib_term_definition_path(@definition.tib_term, @definition),
+            glossary_definition_path: glossary_definition_path(@definition.glossary, @definition),
             definition_id: @definition.id,
           }
           render json: json
@@ -36,13 +37,7 @@ class DefinitionsController < ApplicationController
     end
   end
 
-  def show
-
-  end
-
   def edit
-    #respond_to do |format|
-    #  format.html do
     @term = TibTerm.find(params[:tib_term_id])
     @definition = Definition.find(params[:id])
     if @definition.glossary.user_id != current_user.id
@@ -50,16 +45,6 @@ class DefinitionsController < ApplicationController
     else
       render
     end
-
-    #  format.json do
-    #    #@term = TibTerm.find(params[:tib_term_id])
-    #    @definition = Definition.find(params[:id])
-    #    json = {
-    #      entry: @definition.entry
-    #    }
-    #    render json: json
-    #  end
-    #end
   end
 
   def update
@@ -86,6 +71,7 @@ class DefinitionsController < ApplicationController
             entry: @definition.entry,
             tib_term_path: tib_term_path(@definition.tib_term),
             definition_path: tib_term_definition_path(@definition.tib_term, @definition),
+            glossary_definition_path: glossary_definition_path(@definition.glossary, @definition),
             definition_id: @definition.id,
           }
           render json: json
@@ -94,6 +80,14 @@ class DefinitionsController < ApplicationController
     end
 
   end
+
+  def destroy
+    @definition = Definition.find(params[:id])
+    @glossary = Glossary.find(params[:glossary_id])
+    @definition.destroy
+    redirect_to glossary_path(@glossary)
+  end
+
   private
   def remove_punctuation(term)
     term.strip

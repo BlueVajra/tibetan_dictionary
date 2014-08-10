@@ -74,6 +74,23 @@ feature "Managing glossaries" do
     expect(page).to have_content "Really New and Improved"
   end
 
+  scenario "user can delete an entry in their glossary", js: true do
+    user = create_user("bob@bob.com")
+    sign_in_user(user)
+    glossary = create_public_glossary(user, "Glossary Test 1")
+    create_bulk_definitions_for(glossary)
+
+    click_on 'My Glossaries'
+    click_on "Glossary Test 1"
+
+    within("table.glossary_terms tr:nth-child(1)") do
+      click_on "delete"
+    end
+
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to_not have_content "Test link"
+  end
+
   scenario "user can download a csv of a glossary" do
     user = create_user("bob@bob.com")
     sign_in_user(user)
@@ -90,6 +107,10 @@ Term,Entry
 dam,Test link {chos}
 chos,Link to Here
     CSV
+  end
+
+  scenario "user can delete an entry in their glossary" do
+
   end
 
   scenario "user can download a pdf of a glossary" do

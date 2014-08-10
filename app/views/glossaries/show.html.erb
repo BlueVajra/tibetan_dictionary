@@ -25,7 +25,10 @@
       <tr class="glossary_term" data-definition-id="<%= definition.id %>">
         <td class="wyl"><%= link_to definition.tib_term.wyl, tib_term_path(definition.tib_term) %></td>
         <td class="entry"><%= definition.entry %></td>
-        <td class="button"><%= link_to "edit", tib_term_definition_path(definition.tib_term, definition), class: "edit" %></td>
+        <td class="button">
+          <%= link_to "edit", tib_term_definition_path(definition.tib_term, definition), class: "edit" %>
+          <%= link_to "delete", glossary_definition_path(@glossary, definition), method: :delete, data: { confirm: "Are you sure?" }, class: "delete" %>
+        </td>
       </tr>
     <% end %>
   </table>
