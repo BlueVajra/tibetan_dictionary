@@ -15,10 +15,14 @@ class Glossary < ActiveRecord::Base
     end
   end
 
-  def create_definitions_from_csv(file)
+  def create_definitions_from_csv(file, limit=1000)
     Glossary.transaction do
       CSV.open(file.path, headers: true) do |csv_file|
+        if csv_file.count > limit
+          raise RangeError, "You may not have more than #{limit} lines. For larger files, please contact the Admin."
+        end
         rows = csv_file.each
+        rows.rewind
         headers = csv_file.first.headers
         if headers.include?("Term") && headers.include?("Definition")
           rows.rewind

@@ -75,5 +75,12 @@ CSV
 
       expect { glossary.create_definitions_from_csv(csv_file) }.to raise_error(CSV::MalformedCSVError)
     end
+
+    it "user sees an error when trying to load a csv with too many lines" do
+      glossary = Glossary.create!(:name => 'Name', :description => 'Description')
+      csv_file = File.open("#{Rails.root}/spec/fixtures/too_many_lines.csv")
+
+      expect { glossary.create_definitions_from_csv(csv_file, 10) }.to raise_error(RangeError)
+    end
   end
 end
