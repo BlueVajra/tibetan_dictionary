@@ -3,21 +3,25 @@
 
   <h3><%= @glossary.description %></h3>
 
-  <div class="controls">
-    <%= link_to "Import Glossary", import_glossary_path(@glossary), class: "button" %>
-    <%= link_to "Download CSV", glossary_path(@glossary, format: "csv"), class: "button" %>
-    <%= link_to "Download PDF", glossary_path(@glossary, format: "pdf"), class: "button" %>
-    <%= link_to "Edit Glossary", edit_glossary_path(@glossary), class: "button" %>
-  </div>
+  <% if @is_current_owner %>
+    <div class="controls">
+      <%= link_to "Import Glossary", import_glossary_path(@glossary), class: "button" %>
+      <%= link_to "Download CSV", glossary_path(@glossary, format: "csv"), class: "button" %>
+      <%= link_to "Download PDF", glossary_path(@glossary, format: "pdf"), class: "button" %>
+      <%= link_to "Edit Glossary", edit_glossary_path(@glossary), class: "button" %>
+    </div>
+  <% end %>
 
-  <%= form_for :tib_definition, remote: true, url: glossary_definitions_path(@glossary), method: :post, html: {data: {type: "json"}, id: "definition_add"} do |f| %>
-    <table class="glossary_terms_add">
-      <tr class="add">
-        <td class="wyl"><%= f.text_field :wyl, {placeholder: "Wylie Term"} %></td>
-        <td class="entry"><%= f.text_field :entry, {placeholder: "Definition Entry"} %></td>
-        <td class="button"><%= f.submit 'Submit' %></td>
-      </tr>
-    </table>
+  <% if @is_current_owner %>
+    <%= form_for :tib_definition, remote: true, url: glossary_definitions_path(@glossary), method: :post, html: {data: {type: "json"}, id: "definition_add"} do |f| %>
+      <table class="glossary_terms_add">
+        <tr class="add">
+          <td class="wyl"><%= f.text_field :wyl, {placeholder: "Wylie Term"} %></td>
+          <td class="entry"><%= f.text_field :entry, {placeholder: "Definition Entry"} %></td>
+          <td class="button"><%= f.submit 'Submit' %></td>
+        </tr>
+      </table>
+    <% end %>
   <% end %>
 
   <table class="glossary_terms">
@@ -25,10 +29,12 @@
       <tr class="glossary_term" data-definition-id="<%= definition.id %>">
         <td class="wyl"><%= link_to definition.tib_term.wyl, tib_term_path(definition.tib_term) %></td>
         <td class="entry"><%= definition.entry %></td>
-        <td class="button">
-          <%= link_to "edit", tib_term_definition_path(definition.tib_term, definition), class: "edit" %>
-          <%= link_to "delete", glossary_definition_path(@glossary, definition), method: :delete, data: { confirm: "Are you sure?" }, class: "delete" %>
-        </td>
+        <% if @is_current_owner %>
+          <td class="button">
+            <%= link_to "edit", tib_term_definition_path(definition.tib_term, definition), class: "edit" %>
+            <%= link_to "delete", glossary_definition_path(@glossary, definition), method: :delete, data: {confirm: "Are you sure?"}, class: "delete" %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

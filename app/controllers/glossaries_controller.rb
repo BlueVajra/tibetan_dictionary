@@ -1,5 +1,6 @@
 class GlossariesController < ApplicationController
   before_action :authenticate_user!
+  before_action :verify_ownership, only: [:edit, :update, :import_form, :import]
 
   def index
     @glossaries = current_user.glossaries
@@ -10,11 +11,7 @@ class GlossariesController < ApplicationController
   end
 
   def create
-    @glossary = Glossary.new
-    @glossary.user_id = current_user.id
-    @glossary.name = params[:glossary][:name]
-    @glossary.description = params[:glossary][:description]
-    @glossary.private = params[:glossary][:private]
+    @glossary = current_user.glossaries.new(glossary_params)
     if @glossary.save
       redirect_to '/glossaries'
     else
@@ -24,6 +21,7 @@ class GlossariesController < ApplicationController
 
   def show
     @glossary = Glossary.find(params[:id])
+    @glossary.user.id == current_user.id ? @is_current_owner = true : @is_current_owner = false
     respond_to do |format|
       format.html do
         @definitions = @glossary.definitions.paginate(:page => params[:page], :per_page => 30)
@@ -47,10 +45,7 @@ class GlossariesController < ApplicationController
 
   def update
     @glossary = Glossary.find(params[:id])
-    @glossary.name = params[:glossary][:name]
-    @glossary.description = params[:glossary][:description]
-    @glossary.private = params[:glossary][:private]
-    if @glossary.save
+    if @glossary.update(glossary_params)
       redirect_to glossaries_path
     else
       render :edit
@@ -81,5 +76,17 @@ class GlossariesController < ApplicationController
     current_user.default_glossary = params[:id]
     current_user.save
     redirect_to glossaries_path
+  end
+
+  private
+  def glossary_params
+    params.require(:glossary).permit(:name, :description,:private)
+  end
+
+  def verify_ownership
+    @glossary = Glossary.find(params[:id])
+    unless @glossary.user.id == current_user.id
+      redirect_to glossary_path(@glossary), alert: "This action is not available"
+    end
   end
 end

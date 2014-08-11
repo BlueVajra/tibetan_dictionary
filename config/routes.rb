@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   get '/my_home', to: 'welcome#user'
 
   resources :tib_terms do
-    resources :definitions
+    resources :definitions, except: [:destroy]
     resources :comments
   end
+
+  resources :definitions, only: [:destroy, :edit, :update]
 
   resources :glossaries do
     resources :definitions, only: [:create, :edit, :update, :destroy]

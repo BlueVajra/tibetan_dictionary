@@ -1,5 +1,6 @@
 class DefinitionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :verify_ownership, only: [:destroy, :edit, :update]
   respond_to :html, :js
 
   def create
@@ -40,11 +41,7 @@ class DefinitionsController < ApplicationController
   def edit
     @term = TibTerm.find(params[:tib_term_id])
     @definition = Definition.find(params[:id])
-    if @definition.glossary.user_id != current_user.id
-      redirect_to glossaries_path, alert: "This term is not available to edit"
-    else
-      render
-    end
+    render
   end
 
   def update
@@ -83,7 +80,7 @@ class DefinitionsController < ApplicationController
 
   def destroy
     @definition = Definition.find(params[:id])
-    @glossary = Glossary.find(params[:glossary_id])
+    @glossary = @definition.glossary
     @definition.destroy
     redirect_to glossary_path(@glossary)
   end
@@ -91,5 +88,12 @@ class DefinitionsController < ApplicationController
   private
   def remove_punctuation(term)
     term.strip
+  end
+
+  def verify_ownership
+    @definition = Definition.find(params[:id])
+    unless @definition.glossary.user.id == current_user.id
+      redirect_to glossary_path(@definition.glossary), alert: "This action is not available"
+    end
   end
 end

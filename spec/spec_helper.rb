@@ -12,7 +12,9 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
   config.include ObjectCreationMethods
+  config.include FeatureHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
+  config.include Devise::TestHelpers, :type => :controller
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -32,4 +34,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
 end
