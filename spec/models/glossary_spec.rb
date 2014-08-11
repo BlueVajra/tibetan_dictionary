@@ -82,5 +82,14 @@ CSV
 
       expect { glossary.create_definitions_from_csv(csv_file, 10) }.to raise_error(RangeError)
     end
+
+    it "determines if a glossary belongs to a user" do
+      user = create_user("bob@bob.com")
+      glossary = user.glossaries.create!(:name => 'Name', :description => 'Description')
+
+      expect(glossary.belongs_to?(user)).to eq true
+
+      expect(glossary.belongs_to?(create_user('sue@sue.com'))).to eq false
+    end
   end
 end

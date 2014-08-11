@@ -3,7 +3,7 @@
 
   <h3><%= @glossary.description %></h3>
 
-  <% if @is_current_owner %>
+  <% if @glossary.belongs_to?(current_user) %>
     <div class="controls">
       <%= link_to "Import Glossary", import_glossary_path(@glossary), class: "button" %>
       <%= link_to "Download CSV", glossary_path(@glossary, format: "csv"), class: "button" %>
@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <% if @is_current_owner %>
+  <% if @glossary.belongs_to?(current_user) %>
     <%= form_for :tib_definition, remote: true, url: glossary_definitions_path(@glossary), method: :post, html: {data: {type: "json"}, id: "definition_add"} do |f| %>
       <table class="glossary_terms_add">
         <tr class="add">
@@ -29,7 +29,7 @@
       <tr class="glossary_term" data-definition-id="<%= definition.id %>">
         <td class="wyl"><%= link_to definition.tib_term.wyl, tib_term_path(definition.tib_term) %></td>
         <td class="entry"><%= definition.entry %></td>
-        <% if @is_current_owner %>
+        <% if @glossary.belongs_to?(current_user) %>
           <td class="button">
             <%= link_to "edit", tib_term_definition_path(definition.tib_term, definition), class: "edit" %>
             <%= link_to "delete", glossary_definition_path(@glossary, definition), method: :delete, data: {confirm: "Are you sure?"}, class: "delete" %>

@@ -18,7 +18,7 @@ describe DefinitionsController do
       update: :put,
       destroy: :delete
     }.each do |action, method|
-      it "can't access delete action for other people's glossaries" do
+      it "can't access #{action} action for other people's glossaries" do
         send(method, action, id: @definition.id)
         expect(response).to redirect_to glossary_path(@glossary1)
         expect(flash[:alert]).to eq "This action is not available"

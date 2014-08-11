@@ -1,6 +1,8 @@
 class GlossariesController < ApplicationController
   before_action :authenticate_user!
-  before_action :verify_ownership, only: [:edit, :update, :import_form, :import]
+  before_action :find_glossary, except: [:index, :create, :new]
+  before_action :verify_ownership_of_public_glossary, only: [:edit, :update, :import_form, :import]
+  before_action :verify_ownership_of_private_glossary, only: [:edit, :update, :import_form, :import, :show]
 
   def index
     @glossaries = current_user.glossaries
@@ -20,8 +22,6 @@ class GlossariesController < ApplicationController
   end
 
   def show
-    @glossary = Glossary.find(params[:id])
-    @glossary.user.id == current_user.id ? @is_current_owner = true : @is_current_owner = false
     respond_to do |format|
       format.html do
         @definitions = @glossary.definitions.paginate(:page => params[:page], :per_page => 30)
@@ -34,17 +34,14 @@ class GlossariesController < ApplicationController
                :template => "/glossaries/show.pdf.erb",
                :disposition => 'attachment',
                :layout => "pdf.html"
-        # :show_as_html => true
       end
     end
   end
 
   def edit
-    @glossary = Glossary.find(params[:id])
   end
 
   def update
-    @glossary = Glossary.find(params[:id])
     if @glossary.update(glossary_params)
       redirect_to glossaries_path
     else
@@ -57,18 +54,12 @@ class GlossariesController < ApplicationController
   end
 
   def import
-    glossary = Glossary.find(params[:id])
-    error = ""
     begin
-      glossary.create_definitions_from_csv(params[:file])
+      @glossary.create_definitions_from_csv(params[:file])
+      redirect_to glossary_path(@glossary), notice: "Your records have been successfully imported"
     rescue RuntimeError => e
-      error = e
-    end
-    if !error.blank?
-      flash.now[:error] = "There was an error with the import.\n#{error.message}\nPlease fix the problem and try again."
+      flash.now[:error] = "There was an error with the import.\n#{e.message}\nPlease fix the problem and try again."
       render :import_form
-    else
-      redirect_to glossary_path(glossary), notice: "Your records have been successfully imported"
     end
   end
 
@@ -80,13 +71,26 @@ class GlossariesController < ApplicationController
 
   private
   def glossary_params
-    params.require(:glossary).permit(:name, :description,:private)
+    params.require(:glossary).permit(:name, :description, :private)
   end
 
-  def verify_ownership
-    @glossary = Glossary.find(params[:id])
-    unless @glossary.user.id == current_user.id
-      redirect_to glossary_path(@glossary), alert: "This action is not available"
+  def verify_ownership_of_public_glossary
+    if !@glossary.private?
+      if !@glossary.belongs_to?(current_user)
+        redirect_to glossary_path(@glossary), alert: "This action is not available"
+      end
     end
+  end
+
+  def verify_ownership_of_private_glossary
+    if @glossary.private?
+      if !@glossary.belongs_to?(current_user)
+        render status: 404, text: 'Not found.'
+      end
+    end
+  end
+
+  def find_glossary
+    @glossary = Glossary.find(params[:id])
   end
 end
