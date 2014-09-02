@@ -43,4 +43,4 @@ gem 'pdf-reader', '~> 1.3.3'
 
 gem 'newrelic_rpm', '~> 3.9.1.236'
 
-gem "wylie", path: "gems/wylie"
+gem "wylie", git: "git://github.com/BlueVajra/Wylie.git"

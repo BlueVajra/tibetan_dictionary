@@ -1,5 +1,6 @@
-PATH
-  remote: gems/wylie
+GIT
+  remote: git://github.com/BlueVajra/Wylie.git
+  revision: 9bc62d6fcc7d769bf7d58e478179262d14532298
   specs:
     wylie (0.0.1)
 
