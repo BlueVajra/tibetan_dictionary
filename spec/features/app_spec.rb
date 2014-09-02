@@ -35,6 +35,11 @@ feature "Manage Authentication" do
       visit tib_term_path(@term)
       expect(page).to have_content "Please register or login to add a definition"
     end
+    scenario "guest can't add a comment" do
+      @term = TibTerm.create!(wyl: "My term")
+      visit tib_term_path(@term)
+      expect(page).to have_content "Please register or login to comment"
+    end
   end
 
 end

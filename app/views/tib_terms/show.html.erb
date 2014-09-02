@@ -19,15 +19,19 @@
   <div id="tabs_container">
     <div id="term_comments" class="tab_container">
       <div id="add_comment">
-        <%= form_for :comment, remote: true, url: tib_term_comments_path(@term), method: :post, html: {data: {type: "json"}, id: "comment_add"} do |f| %>
-          <h4>Add Comment</h4>
-          <div class="comment_entry">
-            <%= f.text_field :title, placeholder: "Comment Title (Optional)" %>
-          </div>
-          <div class="comment_entry">
-            <%= f.text_area :body , placeholder: "Comment Body"%>
-          </div>
-          <%= f.submit "Post" %>
+        <h4>Add Comment</h4>
+        <% if user_signed_in? %>
+          <%= form_for :comment, remote: true, url: tib_term_comments_path(@term), method: :post, html: {data: {type: "json"}, id: "comment_add"} do |f| %>
+            <div class="comment_entry">
+              <%= f.text_field :title, placeholder: "Comment Title (Optional)" %>
+            </div>
+            <div class="comment_entry">
+              <%= f.text_area :body, placeholder: "Comment Body" %>
+            </div>
+            <%= f.submit "Post" %>
+          <% end %>
+        <% else %>
+          <p>Please register or login to comment.</p>
         <% end %>
       </div>
       <div id="comments">
