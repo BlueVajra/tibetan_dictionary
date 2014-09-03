@@ -2,6 +2,7 @@ module FeatureHelpers
   def sign_up_user(email)
     visit '/'
     click_link 'Sign up'
+    fill_in 'user[username]', with: email
     fill_in 'user[email]', with: email
     fill_in 'user[password]', with: "12341234"
     fill_in 'user[password_confirmation]', with: "12341234"

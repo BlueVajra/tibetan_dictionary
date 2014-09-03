@@ -1,6 +1,6 @@
 module ObjectCreationMethods
   def create_user(email)
-    User.create(email: email, password: "password1")
+    User.create(username: email, email: email, password: "password1")
   end
 
   def create_term(term)

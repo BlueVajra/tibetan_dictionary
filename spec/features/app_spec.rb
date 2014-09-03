@@ -1,6 +1,19 @@
 require 'spec_helper'
 
 feature "Manage Authentication" do
+  context "User Registers" do
+    scenario "a user can pick a username when registering" do
+      visit '/'
+      click_link 'Sign up'
+      fill_in 'user[username]', with: "Bob Smith"
+      fill_in 'user[email]', with: "bob@bob.com"
+      fill_in 'user[password]', with: "12341234"
+      fill_in 'user[password_confirmation]', with: "12341234"
+      click_button 'Sign up'
+      expect(page).to have_content "Bob Smith"
+    end
+  end
+
   context "User is signed in" do
     before :each do
       sign_up_user("bob@bob.com")
@@ -15,6 +28,7 @@ feature "Manage Authentication" do
       click_link "Sign out"
 
       click_link 'Sign up'
+      fill_in 'user[username]', with: "john smith"
       fill_in 'user[email]', with: "john@gmail.com"
       fill_in 'user[password]', with: "12341234"
       fill_in 'user[password_confirmation]', with: "12341234"
