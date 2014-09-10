@@ -1,13 +1,16 @@
 class TibTermsController < ApplicationController
   def index
     if params[:search]
-      @terms = TibTerm.search(params[:search]).paginate(:page => params[:page], :per_page => 30)
-      @term = TibTerm.find_by(wyl: params[:search])
-      if !@terms.empty?
+      # @terms = TibTerm.search(params[:search]).paginate(:page => params[:page], :per_page => 30)
+      @query = params[:search]
+      @terms = TibTerm.search(params[:search])
+      @definition_terms = TibTerm.definition_search(@query)
+      @term = TibTerm.find_by(wyl: @query)
+      if !@terms.empty? || !@definition_terms.empty?
         @search = true
         render
       else
-        redirect_to new_tib_term_path, notice: "This term is not in the dictionary.\nPlease add ''#{params[:search]}'' and a definition to your public glossary and help this dictionary grow!"
+        redirect_to new_tib_term_path, notice: "This term is not in the dictionary.\nPlease add ''#{@query}'' and a definition to your public glossary and help this dictionary grow!"
       end
     else
       @terms = TibTerm.paginate(:page => params[:page], :per_page => 30)

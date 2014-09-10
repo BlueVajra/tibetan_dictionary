@@ -30,4 +30,19 @@ feature "Search terms and see definitions" do
     expect(page).to have_content "Link to Here"
   end
 
+  scenario "search results show both term and definition results" do
+    user = create_user("bob@bob.com")
+    glossary = create_public_glossary(user)
+    create_bulk_definitions_for(glossary)
+
+    visit '/'
+    click_on 'Dictionary'
+    fill_in 'search', with: "chos"
+    click_button 'search_button'
+    expect(page).to have_content "chos"
+    expect(page).to have_content "dam"
+    expect(page).to have_content "Search results for 'chos'"
+
+  end
+
 end

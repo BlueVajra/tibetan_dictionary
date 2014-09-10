@@ -13,6 +13,10 @@ class TibTerm < ActiveRecord::Base
     where(:wyl, query)
   end
 
+  def self.definition_search(query)
+    joins(:definitions).merge(Definition.where("entry like ?", "%#{query}%"))
+  end
+
   def definitions_for_user(user)
     all_records = definitions.includes(:glossary)
     all_records.select do |definition|
