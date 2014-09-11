@@ -1,7 +1,6 @@
 class TibTermsController < ApplicationController
   def index
     if params[:search]
-      # @terms = TibTerm.search(params[:search]).paginate(:page => params[:page], :per_page => 30)
       @query = params[:search]
       @terms = TibTerm.search(params[:search])
       @definition_terms = TibTerm.definition_search(@query)
@@ -13,7 +12,7 @@ class TibTermsController < ApplicationController
         redirect_to new_tib_term_path, notice: "This term is not in the dictionary.\nPlease add ''#{@query}'' and a definition to your public glossary and help this dictionary grow!"
       end
     else
-      @terms = TibTerm.paginate(:page => params[:page], :per_page => 30)
+      @terms = TibTerm.page(params[:page])
     end
   end
 

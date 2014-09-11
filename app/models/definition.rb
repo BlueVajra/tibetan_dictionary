@@ -13,4 +13,8 @@ class Definition < ActiveRecord::Base
     end
   end
 
+  def self.definition_search(query)
+    where("entry like ?", "%#{query}%")
+  end
+
 end

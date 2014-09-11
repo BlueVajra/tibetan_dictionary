@@ -24,7 +24,10 @@
       <h4 class="search_results">Definition Search Results</h4>
       <ul class="terms_from_definitions">
         <% @definition_terms.each do |term| %>
-          <li><%= link_to term.wyl, tib_term_path(term.id) %></li>
+          <li><dl>
+            <dt><%= link_to term.wyl, tib_term_path(term.id) %></dt>
+            <dl><%= term.definitions.first.entry[0..55] %></dl>
+          </dl></li>
         <% end %>
       </ul>
     <% end %>
@@ -36,6 +39,6 @@
       <% end %>
     </ul>
 
-    <%= will_paginate @terms %>
+    <%= paginate @terms %>
   <% end %>
 </div>

@@ -33,7 +33,7 @@ feature "Search terms and see definitions" do
   scenario "search results show both term and definition results" do
     user = create_user("bob@bob.com")
     glossary = create_public_glossary(user)
-    create_bulk_definitions_for(glossary)
+    create_searching_definitions_for(glossary)
 
     visit '/'
     click_on 'Dictionary'
@@ -42,7 +42,20 @@ feature "Search terms and see definitions" do
     expect(page).to have_content "chos"
     expect(page).to have_content "dam"
     expect(page).to have_content "Search results for 'chos'"
+  end
 
+  scenario "search results for query in definition show snipit from definition" do
+    user = create_user("bob@bob.com")
+    glossary = create_public_glossary(user)
+    create_searching_definitions_for(glossary)
+
+    visit '/'
+    click_on 'Dictionary'
+    fill_in 'search', with: "chos"
+    click_button 'search_button'
+
+    expect(page).to have_content "Test link {chos}"
+    expect(page).to have_content "chos abcd efgh ijkl "
   end
 
 end

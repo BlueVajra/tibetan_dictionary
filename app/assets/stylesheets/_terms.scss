@@ -7,6 +7,12 @@
   }
 }
 
+.terms_from_definitions dl{
+  padding:0;
+  margin:0;
+
+}
+
 h4.search_results, h4.exact_match{
   margin-top:1em;
 }
@@ -72,10 +78,9 @@ h4.search_results, h4.exact_match{
 .pagination {
   overflow: hidden;
 
-  a, em, span {
+  em, span {
     display: block;
     float: left;
-    padding: .2em .4em;
     text-decoration: none;
     color: black;
     margin: 0;
@@ -83,9 +88,16 @@ h4.search_results, h4.exact_match{
     border-bottom: 1px solid black;
     border-top: 1px solid black;
   }
+  a{
+    padding: .2em .4em;
+  }
   .current {
     background-color: #49AEC0;
     color: #ffffff;
+    padding: 0 .4em;
+  }
+  .gap{
+    padding: 0 .4em;
   }
   .disabled, .gap {
     color: darkgray;
@@ -93,7 +105,7 @@ h4.search_results, h4.exact_match{
   a:hover {
     background-color: rgba(0, 0, 0, .2);
   }
-  .next_page {
+  .last {
     border-right: 1px solid black;
   }
 

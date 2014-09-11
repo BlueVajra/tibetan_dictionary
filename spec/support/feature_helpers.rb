@@ -42,6 +42,28 @@ module FeatureHelpers
     )
   end
 
+  def create_searching_definitions_for(glossary)
+    term1 = TibTerm.create!(wyl: "dam")
+    term2 = TibTerm.create!(wyl: "chos")
+    term3 = TibTerm.create!(wyl: "test1")
+
+    Definition.create!(
+      entry: %q{Test link {chos}},
+      tib_term_id: term1.id,
+      glossary_id: glossary.id
+    )
+    Definition.create!(
+      entry: "Link to Here",
+      tib_term_id: term2.id,
+      glossary_id: glossary.id
+    )
+    Definition.create!(
+      entry: "chos abcd efgh ijkl mnop qrst uvwxyz 1234 5678 90111",
+      tib_term_id: term3.id,
+      glossary_id: glossary.id
+    )
+  end
+
   def convert_pdf_to_page
     temp_pdf = Tempfile.new('pdf')
     temp_pdf << page.source.force_encoding('UTF-8')

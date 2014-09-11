@@ -24,7 +24,7 @@ class GlossariesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @definitions = @glossary.definitions.paginate(:page => params[:page], :per_page => 30)
+        @definitions = @glossary.definitions.page(params[:page])
       end
       format.csv do
         send_data @glossary.to_csv, filename: "#{@glossary.name}.csv"
